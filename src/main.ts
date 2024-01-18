@@ -1,8 +1,10 @@
 import "./scss/style.scss";
-import "./loadingScreen";
+import { startLoading } from "./loadingScreen";
+import "./analog";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-
+console.log(app);
+//startLoading();
 interface Todo {
   id: number;
   label: string;
