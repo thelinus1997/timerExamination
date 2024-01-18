@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "titleFont";
+  src: url(../fonts/Righteous-Regular.ttf);
+}
 * {
   margin: 0;
   padding: 0;
@@ -5,16 +9,12 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "PT sans";
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #222222;
+  letter-spacing: 2px;
 }
 
 a {
@@ -38,12 +38,13 @@ body {
 }
 
 h1 {
+  font-family: "titleFont";
   font-size: 3.2em;
   line-height: 1.1;
 }
 
 #app {
-  background-color: black;
+  background-color: #222222;
   width: 430px;
   height: 932px;
   display: flex;
@@ -100,19 +101,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */

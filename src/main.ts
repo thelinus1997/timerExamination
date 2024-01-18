@@ -1,4 +1,5 @@
 import "./styles.css";
+import "./loadingScreen";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
