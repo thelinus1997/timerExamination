@@ -20,3 +20,9 @@ todos.forEach((todo) => {
   div.innerHTML = `label: ${todo.label} - done: ${todo.done}`;
   app.append(div);
 });
+
+function digitalTimer(){
+  let hour ="";
+  let min ="";
+  let sec ="";
+}
