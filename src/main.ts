@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./scss/style.scss";
 import "./loadingScreen";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
