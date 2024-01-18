@@ -1,3 +1,7 @@
+obs pusha hit först innan main så inget blir konstigt
+
+
+
 ![poster](./poster.png)
 # Interval App - for all you timing needs
 
