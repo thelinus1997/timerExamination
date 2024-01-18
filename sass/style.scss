@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    
 }
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -33,6 +34,8 @@
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    align-content: center;
+    justify-content: center;
   }
   
   h1 {
@@ -52,6 +55,7 @@
   .center{
     display:flex;
     flex-direction: column;
+    align-items: center;
   }
   .logo {
     height: 6em;

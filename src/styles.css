@@ -33,6 +33,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  align-content: center;
+  justify-content: center;
 }
 
 h1 {
@@ -53,6 +55,7 @@ h1 {
 .center {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .logo {
