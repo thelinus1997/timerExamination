@@ -1,6 +1,7 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
 export function startLoading() {
+  app.innerHTML = "";
   const centerCont: HTMLDivElement = document.createElement("div");
   centerCont.classList.add("center");
   const imgElement: HTMLImageElement = document.createElement("img");
