@@ -1,3 +1,4 @@
+@import 'fonts';
 *{
     margin:0;
     padding:0;
@@ -5,7 +6,7 @@
     
 }
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: $titleFont;
     line-height: 1.5;
     font-weight: 400;
   
@@ -39,6 +40,7 @@
   }
   
   h1 {
+    font-family: $titleFont;
     font-size: 3.2em;
     line-height: 1.1;
   }
