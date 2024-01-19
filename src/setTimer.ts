@@ -33,13 +33,18 @@ function buildPage() {
   checkBoxTwo.type = "checkbox";
 
   const textOne: HTMLElement = document.createElement("p");
+  textOne.innerText = "intervals";
   const textTwo: HTMLElement = document.createElement("p");
+  textTwo.innerText = "5 min break / interval";
 
+  const button: HTMLButtonElement = document.createElement("button");
+  button.classList.add("whiteButton");
+  button.innerText = "START TIMER";
   checkboxContainer.append(checkBoxOne, checkBoxTwo);
   textContainer.append(textOne, textTwo);
   choiceContainer.append(checkboxContainer, textContainer);
   minuteContainer.append(minuteShower, minuteText);
   timeContainer.append(arrowLeft, minuteContainer, arrowRight);
-  main.append(logoCont, timeContainer, choiceContainer);
+  main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
 }
