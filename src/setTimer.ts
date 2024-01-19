@@ -1,3 +1,4 @@
+import { analogStart } from "./analog";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
 
@@ -5,6 +6,29 @@ export function setTimer() {
   buildPage();
 }
 console.log(app);
+function updateNegative() {
+  if (minutes == 1) {
+    minutes = 99;
+  } else {
+    minutes -= 1;
+  }
+  const minutesText = document.querySelector(
+    "#app > div > div.timePicker > div > h1"
+  ) as HTMLElement;
+  minutesText.innerText = minutes.toString();
+}
+function updatePositive() {
+  if (minutes == 99) {
+    minutes = 1;
+  } else {
+    minutes += 1;
+  }
+  const minutesText = document.querySelector(
+    "#app > div > div.timePicker > div > h1"
+  ) as HTMLElement;
+  minutesText.innerText = minutes.toString();
+}
+
 function buildPage() {
   console.log("hej");
   const main: HTMLDivElement = document.createElement("div");
@@ -24,8 +48,10 @@ function buildPage() {
   timeContainer.classList.add("timePicker");
   const arrowLeft: HTMLImageElement = document.createElement("img");
   arrowLeft.src = "../public/arrowLeft.svg";
+  arrowLeft.addEventListener("click", updateNegative);
   const arrowRight: HTMLImageElement = document.createElement("img");
   arrowRight.src = "../public/arrowRight.svg";
+  arrowRight.addEventListener("click", updatePositive);
   const minuteContainer: HTMLDivElement = document.createElement("div");
   const minuteShower: HTMLElement = document.createElement("h1");
   minuteShower.innerText = minutes.toString();
@@ -50,6 +76,7 @@ function buildPage() {
   textTwo.innerText = "5 min break / interval";
 
   const button: HTMLButtonElement = document.createElement("button");
+  button.addEventListener("click", () => getTimerValue(minutes));
   button.classList.add("whiteButton");
   button.innerText = "START TIMER";
   intervalContainer.append(checkBoxOne, textOne);
@@ -59,4 +86,8 @@ function buildPage() {
   timeContainer.append(arrowLeft, minuteContainer, arrowRight);
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
+}
+function getTimerValue(input: number) {
+  console.log(input);
+  analogStart(input);
 }

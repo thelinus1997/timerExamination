@@ -1,0 +1,24 @@
+@import "mixins";
+@import "colors";
+.analogContainer {
+  background-color: $background-white;
+  color: $background-black;
+  @include basicFlexBox;
+  justify-content: space-between;
+}
+.greyButton {
+  width: 132px;
+  height: 41px;
+  display: inline-flex;
+  background-color: $background-white;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1px solid #222;
+  opacity: 0.6;
+}
+.headerText {
+  margin-left: 8.175rem;
+}
