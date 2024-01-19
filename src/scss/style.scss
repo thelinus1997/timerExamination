@@ -1,5 +1,7 @@
 @import 'fonts';
 @import 'colors';
+@import 'alarm-break-view';
+@import 'mixins';
 *{
     margin:0;
     padding:0;
@@ -49,6 +51,7 @@
     align-content: center;
     justify-content: center;
     flex-direction: column;
+    border: 1px solid darkslategray;
   }
   .center{
     display:flex;
