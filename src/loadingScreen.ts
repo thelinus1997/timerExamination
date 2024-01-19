@@ -1,4 +1,8 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
+const timeoutId: number = setTimeout(() => {
+  // Code to be executed after the timeout
+  finishLoading();
+}, 2000);
 
 export function startLoading() {
   app.innerHTML = "";
@@ -13,4 +17,9 @@ export function startLoading() {
   subTitle.innerText = "For all your timing needs";
   centerCont.append(imgElement, title, subTitle);
   app.append(centerCont);
+  timeoutId;
+}
+
+function finishLoading() {
+  app.innerHTML = "";
 }
