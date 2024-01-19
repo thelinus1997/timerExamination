@@ -1,0 +1,8 @@
+@mixin basicFlexBox(){
+    width:430px;
+    height:932px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}

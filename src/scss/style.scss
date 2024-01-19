@@ -1,5 +1,6 @@
 @import 'fonts';
 @import 'colors';
+@import 'mixins';
 *{
     margin:0;
     padding:0;
@@ -42,13 +43,12 @@
   }
   
   #app {
-  background-color: $background-black;
-    width:430px;
-    height:932px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
+    background-color: $background-black;
+   @include basicFlexBox;
+  }
+  .setTimer{
+    background-color:$background-white;
+    @include basicFlexBox;
   }
   .center{
     display:flex;

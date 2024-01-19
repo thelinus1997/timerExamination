@@ -1,3 +1,4 @@
+import { setTimer } from "./setTimer";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const timeoutId: number = setTimeout(() => {
   // Code to be executed after the timeout
@@ -22,4 +23,6 @@ export function startLoading() {
 
 function finishLoading() {
   app.innerHTML = "";
+  console.log("loading");
+  setTimer();
 }
