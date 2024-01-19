@@ -79,9 +79,19 @@ h1 {
 .timePicker {
   display: flex;
   width: 279px;
+  height: 100px;
   justify-content: space-between;
   align-items: center;
   margin: 35vh auto auto auto;
+  div {
+    text-align: center;
+  }
+  h1 {
+    @include minuteText;
+  }
+  p {
+    @include minuteSubText;
+  }
 }
 .navLogo {
   display: flex;
