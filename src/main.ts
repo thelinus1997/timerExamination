@@ -1,6 +1,6 @@
 import "./scss/style.scss";
 import "./loadingScreen";
-
+import "./menu";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
 interface Todo {
