@@ -19,6 +19,7 @@
   border-radius: 5px;
   border: 1.5px solid #222;
   background-color: $color;
+  margin: auto auto 3rem auto;
   @include buttonText();
 }
 @mixin buttonText() {
@@ -29,4 +30,12 @@
   line-height: normal;
   letter-spacing: 2.4px;
   text-transform: uppercase;
+}
+@mixin choiceText() {
+  color: #222;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
 }
