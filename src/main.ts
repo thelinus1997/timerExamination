@@ -4,7 +4,7 @@ import "./analog";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
-//startLoading();
+startLoading();
 interface Todo {
   id: number;
   label: string;
