@@ -15,13 +15,23 @@ export function analogStart(input: number) {
   headerText.innerText = "interval";
 
   logoCont.append(svgCont, headerText);
-
-  const clockContainer: HTMLImageElement = document.createElement("img");
-  clockContainer.src = "../public/clock.svg";
+  const clockContainer: HTMLDivElement = document.createElement("div");
+  clockContainer.classList.add("analogClockContainer");
+  const clockFaceSvg: HTMLImageElement = document.createElement("img");
+  clockFaceSvg.src = "../public/clock.svg";
+  clockFaceSvg.setAttribute("width", "400");
+  clockFaceSvg.setAttribute("height", "400");
+  const secondHand: HTMLImageElement = document.createElement("img");
+  secondHand.src = "../public/secondHand.svg";
+  secondHand.setAttribute("id", "secondHand");
+  const minuteHand: HTMLImageElement = document.createElement("img");
+  minuteHand.src = "../public/minuteHand.svg";
+  minuteHand.setAttribute("id", "minuteHand");
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
+  clockContainer.append(clockFaceSvg, secondHand, minuteHand);
   mainContainer.append(logoCont, clockContainer, button);
   app.append(mainContainer);
 }
