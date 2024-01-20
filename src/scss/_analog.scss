@@ -4,11 +4,49 @@
   background-color: $background-white;
   color: $background-black;
   @include basicFlexBox;
-  justify-content: space-between;
 }
+.headerText {
+  margin-left: 8.175rem;
+}
+.analogClockContainer {
+  position: relative;
+  margin: 12.5rem auto auto auto;
+}
+#secondHand,
+#minuteHand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 100%; // Set the rotation origin to the bottom center
+  height: 11rem;
+}
+
+#secondHand {
+  transform: translate(-50%, -100%) rotate(0deg); // Initial rotation
+  animation: rotateClockwise 60s linear infinite; // Rotate every 60 seconds
+}
+
+#minuteHand {
+  transform: translate(-50%, -100%) rotate(0deg); // Initial rotation
+  animation: rotateClockwise 3600s linear infinite; // Rotate every 3600 seconds (1 hour)
+}
+
+@keyframes rotateClockwise {
+  to {
+    transform: translate(-50%, -100%) rotate(360deg); // Rotate one full revolution (360 degrees)
+  }
+}
+
 .greyButton {
-  width: 132px;
-  height: 41px;
+  @include buttonStyle($background-white);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  width: auto;
+  height: auto;
   display: inline-flex;
   background-color: $background-white;
   padding: 10px;
@@ -18,7 +56,4 @@
   border-radius: 5px;
   border: 1px solid #222;
   opacity: 0.6;
-}
-.headerText {
-  margin-left: 8.175rem;
 }
