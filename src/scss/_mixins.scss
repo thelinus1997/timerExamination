@@ -57,3 +57,8 @@
   line-height: normal;
   letter-spacing: 1.6px;
 }
+
+@mixin vhvw(){
+  width: 100vw;
+  height: 100vh;
+}

@@ -8,8 +8,8 @@ import { startCountdown } from "./digital";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
-startLoading();
-//startCountdown();
+//startLoading();
+startCountdown();
 
 interface Todo {
   id: number;

@@ -1,11 +1,11 @@
 @import "colors";
 @import "fonts";
 @import "mixins";
+@import "analog";
 
 .timerBoxDisplay {
   background-color: $background-white;
-  width: 100vw;
-  height: 100vh;
+ @include vhvw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,4 +19,14 @@
   @include basicFlexBox;
 
 } 
+.timerCont{
+  background-color: $background-white;
+  @include vhvw;
 
+}
+
+.navLogo{
+  background-color: $background-white;
+  color: $background-black;
+  font:  $titleFont;
+}
