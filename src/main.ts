@@ -1,4 +1,5 @@
 import "./scss/style.scss";
+import "./scss/_digitalTimer.scss"
 import { startLoading } from "./loadingScreen";
 import "./analog";
 import "./scss/_analog.scss";
