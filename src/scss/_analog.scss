@@ -43,13 +43,13 @@
 
 @keyframes rotateClockwise {
   to {
-    transform: translate(-50%, -100%) rotate($secondHandRotation);
+    transform: translate(-50%, -100%) rotate(9deg);
   }
 }
 
 @keyframes rotateMinuteHand {
   to {
-    transform: translate(-50%, -100%) rotate($minuteHandRotation);
+    transform: translate(-50%, -100%) rotate(9deg);
   }
 }
 .greyButton {
