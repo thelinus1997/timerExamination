@@ -9,6 +9,9 @@ export function startCountdown() {
   secTimerDisplay.classList.add("timerBoxDisplay");
   
 
+const navLogoTimerCont:HTMLDivElement = document.createElement("div");
+navLogoTimerCont.classList.add("navLogoTimer")
+
   const logoCont: HTMLDivElement = document.createElement("div");
   logoCont.classList.add("navLogo");
   const timerCont: HTMLDivElement = document.createElement("div")
@@ -29,9 +32,16 @@ export function startCountdown() {
   headerText.innerText = "interval";
 
  logoCont.append(svgCont, headerText);
+
  timerCont.append(logoCont, secTimerDisplay, button);
  button.append(timerCont);
  
+
+ timerCont.append(logoCont); 
+ timerCont.append(secTimerDisplay);
+ timerCont.append(button); 
+
+
  app.append(timerCont);
 
 
