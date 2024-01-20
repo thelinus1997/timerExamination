@@ -27,11 +27,13 @@ export function analogStart(input: number) {
   const minuteHand: HTMLImageElement = document.createElement("img");
   minuteHand.src = "../public/minuteHand.svg";
   minuteHand.setAttribute("id", "minuteHand");
+  const centerCover: HTMLDivElement = document.createElement("div");
+  centerCover.setAttribute("id", "centerClockFaceCover");
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
-  clockContainer.append(clockFaceSvg, secondHand, minuteHand);
+  clockContainer.append(clockFaceSvg, secondHand, minuteHand, centerCover);
   mainContainer.append(logoCont, clockContainer, button);
   app.append(mainContainer);
 }
