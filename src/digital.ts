@@ -29,7 +29,7 @@ export function startCountdown() {
   headerText.innerText = "interval";
 
  logoCont.append(svgCont, headerText);
- timerCont.append(logoCont, secTimerDisplay);
+ timerCont.append(logoCont, secTimerDisplay, button);
  button.append(timerCont);
  
  app.append(timerCont);
