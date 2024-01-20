@@ -1,4 +1,22 @@
-.timerBoxDisplay{
-  background-color: #1a1a1a;
-  color: white;
+@import "colors";
+@import "fonts";
+@import "mixins";
+
+.timerBoxDisplay {
+  background-color: $background-white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $greyFont;
+  font-family: $basicFont;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 8px;
+  @include basicFlexBox;
 }
+
+
