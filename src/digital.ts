@@ -28,11 +28,11 @@ export function startCountdown() {
   // Create a new div element
   const secTimerDisplay: HTMLDivElement = document.createElement("div");
   secTimerDisplay.classList.add("timerBoxDisplay");
-  const hamBurgareMeny: HTMLImageElement= document.createElement("img");
- /*  hamBurgareMeny.classList.add("hamBurgareMeny");
+  /* const hamBurgareMeny: HTMLImageElement= document.createElement("img");
+  hamBurgareMeny.classList.add("hamBurgareMeny");
   hamBurgareMeny.src=".././pub */
   const logoCont: HTMLDivElement = document.createElement("div");
-  logoCont.classList.add("navLogo");
+  logoCont.classList.add("logo");
   const svgCont: HTMLImageElement = document.createElement("img");
   svgCont.setAttribute("type", "img/svg+xml");
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
