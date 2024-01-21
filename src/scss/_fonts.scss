@@ -3,6 +3,10 @@
     src: url(../fonts/Righteous-Regular.ttf);
 }
 
+@font-face{
+    font-family: "ptSans";
+    src: url(../fonts/PTSans-Regular.ttf);
+}
 $titleFont: "titleFont";
-$basicFont: "PT sans";
+$basicFont: "ptSans";
 

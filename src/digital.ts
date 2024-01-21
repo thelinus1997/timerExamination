@@ -1,15 +1,88 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
+let contentAppended = false;
+const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
 let secTimer: number = 10;
 let minTimer: number = 1;
 
 export function startCountdown() {
-  app.innerHTML = "";
+<<<<<<< HEAD
+  // Create a new  elements
+  const secTimerDisplay: HTMLDivElement = document.createElement("div");
+  secTimerDisplay.classList.add("timerBoxDisplay");
+  
+
+const navLogoTimerCont:HTMLDivElement = document.createElement("div");
+navLogoTimerCont.classList.add("navLogoTimer")
+
+  const logoCont: HTMLDivElement = document.createElement("div");
+  logoCont.classList.add("navLogo");
+  const timerCont: HTMLDivElement = document.createElement("div")
+  timerCont.classList.add("timerCont");
+  const button: HTMLButtonElement = document.createElement("button");
+  button.addEventListener("click", () => abortTimer());
+  button.classList.add("greyButton");
+  button.innerText = "ABORT TIMER";
+=======
+  if (!contentAppended) {
+    // Create new elements
+    
+    secTimerDisplay.classList.add("timerBoxDisplay");
+<<<<<<< HEAD
+>>>>>>> Ellie
+
+=======
+>>>>>>> Ellie
+    const navLogoTimerCont: HTMLDivElement = document.createElement("div");
+    navLogoTimerCont.classList.add("navLogoTimer");
+    const logoCont: HTMLDivElement = document.createElement("div");
+    logoCont.classList.add("navLogo");
+    const timerCont: HTMLDivElement = document.createElement("div");
+    timerCont.classList.add("timerCont");
+    const button: HTMLButtonElement = document.createElement("button");
+    button.addEventListener("click", () => abortTimer());
+    button.classList.add("greyButton");
+    button.innerText = "ABORT TIMER";
+
+    const svgCont: HTMLImageElement = document.createElement("img");
+    svgCont.setAttribute("type", "img/svg+xml");
+    svgCont.setAttribute("src", "../public/flippedLogo.svg");
+    svgCont.setAttribute("width", "32");
+    svgCont.setAttribute("height", "32");
+
+<<<<<<< HEAD
+ logoCont.append(svgCont, headerText);
+
+ timerCont.append(logoCont, secTimerDisplay, button);
+ button.append(timerCont);
+ 
+
+ timerCont.append(logoCont); 
+ timerCont.append(secTimerDisplay);
+ timerCont.append(button); 
+
+
+ app.append(timerCont);
+=======
+    const headerText: HTMLElement = document.createElement("p");
+    headerText.classList.add("headerText");
+    headerText.innerText = "interval";
+
+    logoCont.append(svgCont, headerText);
+    timerCont.append(logoCont);
+    timerCont.append(secTimerDisplay);
+    timerCont.append(button);
+>>>>>>> Ellie
+
+    app.append(timerCont);
+
+    contentAppended = true;
+  }
 
   const intervalId = setInterval(() => {
     secTimer--;
 
-    // check if the time is 0 then it will display time is up
+    // check if the time is 0 then it will display "TIMES UP!"
     if (secTimer < 0) {
       secTimer = 59; // reset seconds
       minTimer--;
@@ -25,39 +98,20 @@ export function startCountdown() {
     console.log(`${minTimer}:${secTimer}`);
   }, 1000); // 1000 milliseconds = 1 second
 
-  // Create a new div element
-  const secTimerDisplay: HTMLDivElement = document.createElement("div");
-  secTimerDisplay.classList.add("timerBoxDisplay");
-  /* const hamBurgareMeny: HTMLImageElement= document.createElement("img");
-  hamBurgareMeny.classList.add("hamBurgareMeny");
-  hamBurgareMeny.src=".././pub */
-  const logoCont: HTMLDivElement = document.createElement("div");
-  logoCont.classList.add("logo");
-  const svgCont: HTMLImageElement = document.createElement("img");
-  svgCont.setAttribute("type", "img/svg+xml");
-  svgCont.setAttribute("src", "../public/flippedLogo.svg");
-  svgCont.setAttribute("width", "32");
-  svgCont.setAttribute("height", "32");
-  const headerText: HTMLElement = document.createElement("p");
-  headerText.classList.add("headerText");
-  headerText.innerText = "interval";
-
-  logoCont.append(svgCont, headerText);
-
-  // Append the new div to the document body
-  app.append(logoCont,secTimerDisplay);
-  
-
   // Update the text content of the div using setInterval
   setInterval(() => {
-    secTimerDisplay.textContent = `${minTimer}:${secTimer - 1}`;
+    secTimerDisplay.textContent = `${minTimer}:${secTimer}`;
   }, 1000);
 }
 
 // Start the countdown
-startCountdown();
+//startCountdown();
 
 const varNum = 20;
 const newNum = 3;
 let sum = varNum - newNum;
 console.log(sum);
+
+function abortTimer() {
+  window.location.reload();
+}
