@@ -10,7 +10,6 @@ export function startCountdown() {
     // Create a new elements
     
     secTimerDisplay.classList.add("timerBoxDisplay");
-
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
     navLogoTimerCont.classList.add("navLogoTimer");
     const logoCont: HTMLDivElement = document.createElement("div");
