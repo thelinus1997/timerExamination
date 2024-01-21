@@ -21,8 +21,7 @@
 } 
 .timerCont{
   background-color: $background-white;
-  @include vhvw;
-  display: flex;
+  @include basicFlexBox;
 
 }
 

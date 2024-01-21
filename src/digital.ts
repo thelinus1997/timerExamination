@@ -67,8 +67,8 @@ navLogoTimerCont.classList.add("navLogoTimer")
 
   // Update the text content of the div using setInterval
   setInterval(() => {
-    secTimerDisplay.textContent = `${minTimer}:${secTimer - 1}`;
-  }, 1000);
+    secTimerDisplay.textContent = `${minTimer}:${secTimer}`;
+}, 1000);
 }
 
 // Start the countdown
@@ -84,3 +84,4 @@ console.log(sum);
 function abortTimer() {
   window.location.reload();
 }
+
