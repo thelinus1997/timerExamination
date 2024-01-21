@@ -25,7 +25,7 @@ navLogoTimerCont.classList.add("navLogoTimer")
   button.innerText = "ABORT TIMER";
 =======
   if (!contentAppended) {
-    // Create a new elements
+    // Create new elements
     
     secTimerDisplay.classList.add("timerBoxDisplay");
 <<<<<<< HEAD
