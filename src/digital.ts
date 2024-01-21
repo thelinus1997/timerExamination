@@ -7,7 +7,7 @@ let minTimer: number = 1;
 
 export function startCountdown() {
   if (!contentAppended) {
-    // Create a new elements
+    // Create new elements
     
     secTimerDisplay.classList.add("timerBoxDisplay");
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
