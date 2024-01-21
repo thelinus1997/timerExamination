@@ -5,12 +5,13 @@ import "./analog";
 import "./scss/_analog.scss";
 import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
-import "./menu";
+import { createMenu } from "./menu";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
-startLoading();
-//startCountdown();
+// startLoading();
+createMenu();
+// startCountdown();
 
 interface Todo {
   id: number;
