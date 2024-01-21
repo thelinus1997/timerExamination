@@ -28,8 +28,11 @@ navLogoTimerCont.classList.add("navLogoTimer")
     // Create a new elements
     
     secTimerDisplay.classList.add("timerBoxDisplay");
+<<<<<<< HEAD
 >>>>>>> Ellie
 
+=======
+>>>>>>> Ellie
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
     navLogoTimerCont.classList.add("navLogoTimer");
     const logoCont: HTMLDivElement = document.createElement("div");
