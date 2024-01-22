@@ -96,6 +96,7 @@ export function startCountdown() {
   // Triggered when countdown is completed
   timer.addEventListener('targetAchieved', function (e: any) {
     secTimerDisplay.textContent = 'TIMES UP!';
+
   });
 }
 
