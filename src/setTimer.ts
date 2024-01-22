@@ -89,5 +89,5 @@ function buildPage() {
 }
 function getTimerValue(input: number) {
   console.log(input);
-  analogStart(1);
+  analogStart(input);
 }

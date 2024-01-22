@@ -1,7 +1,4 @@
-import Timer from "easytimer.js";
 const app = document.querySelector<HTMLDivElement>("#app")!;
-const timer = new Timer();
-
 export function analogStart(minutes: number) {
   app.innerHTML = "";
   const mainContainer: HTMLDivElement = document.createElement("div");
@@ -80,19 +77,6 @@ export function analogStart(minutes: number) {
   function handleAnimationEnd() {
     alert("Timer Finished!");
   }
-  timer.start({
-    countdown: true,
-    startValues: { minutes: 1 },
-  });
-  timer.addEventListener("targetAchieved", function (e: any) {
-    // Timer has reached its target, handle accordingly
-    app.innerHTML = "";
-    alert("Timer finished!, add more code later!");
-  });
-  timer.addEventListener("secondsUpdated", function (e: any) {
-    // Update your UI or perform actions on each second update
-    console.log(timer.getTimeValues().toString());
-  });
 }
 
 function abortTimer() {
