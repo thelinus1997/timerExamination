@@ -1,0 +1,21 @@
+.navigationLogo {
+  background-color: $whiteFont;
+  top: 0.6rem;
+  left: 0.6rem;
+  margin-bottom: 5rem;
+  position: absolute;
+}
+.menu-Container {
+  //   text-align: center;
+  list-style-type: none;
+  padding: 5rem;
+
+  li {
+    padding: 1rem;
+    align-items: center;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

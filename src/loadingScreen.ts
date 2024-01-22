@@ -1,4 +1,6 @@
+import { create } from "domain";
 import { setTimer } from "./setTimer";
+import { createMenu } from "./menu";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const timeoutId: number = setTimeout(() => {
   // Code to be executed after the timeout
@@ -24,5 +26,6 @@ export function startLoading() {
 function finishLoading() {
   app.innerHTML = "";
   console.log("loading");
-  setTimer();
+  createMenu();
+  // setTimer();
 }
