@@ -42,17 +42,17 @@
   animation: rotateClockwise 3600s linear infinite; // Rotate every 3600 seconds (1 hour)
 }
 
-@keyframes rotateClockwise {
-  to {
-    transform: translate(-50%, -100%) rotate(360deg);
-  }
-}
+// @keyframes rotateClockwise {
+//   to {
+//     transform: translate(-50%, -100%) rotate(360deg);
+//   }
+// }
 
-@keyframes rotateMinuteHand {
-  to {
-    transform: translate(-50%, -100%) rotate(360deg);
-  }
-}
+// @keyframes rotateMinuteHand {
+//   to {
+//     transform: translate(-50%, -100%) rotate(360deg);
+//   }
+// }
 .greyButton {
   @include buttonStyle($background-white);
   font-size: 16px;

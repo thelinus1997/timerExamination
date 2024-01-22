@@ -11,9 +11,9 @@ import { createMenu } from "./menu";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
 // startLoading();
-createMenu();
+//createMenu();
 // startCountdown();
-//startLoading();
+startLoading();
 //startCountdown();
 
-visualTimerFunc();
+//visualTimerFunc();
