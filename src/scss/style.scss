@@ -43,6 +43,7 @@ h1 {
 
 #app {
   background-color: $background-black;
+  overflow: hidden;
   @include basicFlexBox;
 }
 .setTimer {

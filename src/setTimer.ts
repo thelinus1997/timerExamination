@@ -1,8 +1,10 @@
 import { analogStart } from "./analog";
+import { alarmView } from "./alarmvy";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
 
 export function setTimer() {
+  app.innerHTML = "";
   buildPage();
 }
 console.log(app);
@@ -89,5 +91,5 @@ function buildPage() {
 }
 function getTimerValue(input: number) {
   console.log(input);
-  analogStart(input);
+  alarmView();
 }
