@@ -8,6 +8,9 @@ export function alarmView() {
   alarmSvgContainer.src = "../public/alarm.svg";
   alarmSvgContainer.setAttribute("width", "50");
   alarmSvgContainer.setAttribute("height", "50");
+  const alertText: HTMLElement = document.createElement("p");
+  alertText.classList.add("timesUpText");
+  alertText.innerText = "Times up!";
   const ellipseOne: HTMLDivElement = document.createElement("div");
   ellipseOne.id = "ellipseOne";
 
@@ -27,6 +30,6 @@ export function alarmView() {
   ellipseTwo.appendChild(ellipseThree);
   ellipseThree.appendChild(ellipseFour);
   ellipseFour.appendChild(alarmSvgContainer);
-  main.append(ellipseOne, button);
+  main.append(ellipseOne, alertText, button);
   app.appendChild(main);
 }

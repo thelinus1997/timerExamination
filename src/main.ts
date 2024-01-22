@@ -1,6 +1,7 @@
 import "./scss/style.scss";
 import "./scss/_digitalTimer.scss";
 import "./scss/_alarmvy.scss";
+import "./scss/_breakvy.scss";
 import { startLoading } from "./loadingScreen";
 import "./analog";
 import "./scss/_analog.scss";
@@ -9,18 +10,9 @@ import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 import { createMenu } from "./menu";
-<<<<<<< HEAD
-import "./breakview";
-
-
-import { Timer } from "easytimer.js";
-const timer = new Timer();
-
-
-=======
 import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
->>>>>>> Linus
+import { breakView } from "./breakview";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
@@ -29,10 +21,9 @@ console.log(app);
 // startCountdown();
 // startLoading();
 // startCountdown();
-alarmView(); //startCountdown();
+breakView(); //startCountdown();
 
-//startLoading();
-startCountdown();
+// //startLoading();
+// startCountdown();
 
-
-visualTimerFunc();
+// visualTimerFunc();
