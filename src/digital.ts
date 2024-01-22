@@ -6,14 +6,14 @@ let secTimer: number = 10;
 let minTimer: number = 1;
 
 export function startCountdown() {
-<<<<<<< HEAD
+
   // Create a new  elements
   const secTimerDisplay: HTMLDivElement = document.createElement("div");
   secTimerDisplay.classList.add("timerBoxDisplay");
-  
 
-const navLogoTimerCont:HTMLDivElement = document.createElement("div");
-navLogoTimerCont.classList.add("navLogoTimer")
+
+  const navLogoTimerCont: HTMLDivElement = document.createElement("div");
+  navLogoTimerCont.classList.add("navLogoTimer")
 
   const logoCont: HTMLDivElement = document.createElement("div");
   logoCont.classList.add("navLogo");
@@ -23,16 +23,14 @@ navLogoTimerCont.classList.add("navLogoTimer")
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
-=======
+
   if (!contentAppended) {
     // Create new elements
-    
-    secTimerDisplay.classList.add("timerBoxDisplay");
-<<<<<<< HEAD
->>>>>>> Ellie
 
-=======
->>>>>>> Ellie
+    secTimerDisplay.classList.add("timerBoxDisplay");
+
+
+
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
     navLogoTimerCont.classList.add("navLogoTimer");
     const logoCont: HTMLDivElement = document.createElement("div");
@@ -50,20 +48,20 @@ navLogoTimerCont.classList.add("navLogoTimer")
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
 
-<<<<<<< HEAD
- logoCont.append(svgCont, headerText);
 
- timerCont.append(logoCont, secTimerDisplay, button);
- button.append(timerCont);
- 
+    logoCont.append(svgCont, headerText);
 
- timerCont.append(logoCont); 
- timerCont.append(secTimerDisplay);
- timerCont.append(button); 
+    timerCont.append(logoCont, secTimerDisplay, button);
+    button.append(timerCont);
 
 
- app.append(timerCont);
-=======
+    timerCont.append(logoCont);
+    timerCont.append(secTimerDisplay);
+    timerCont.append(button);
+
+
+    app.append(timerCont);
+
     const headerText: HTMLElement = document.createElement("p");
     headerText.classList.add("headerText");
     headerText.innerText = "interval";
@@ -72,7 +70,7 @@ navLogoTimerCont.classList.add("navLogoTimer")
     timerCont.append(logoCont);
     timerCont.append(secTimerDisplay);
     timerCont.append(button);
->>>>>>> Ellie
+
 
     app.append(timerCont);
 
