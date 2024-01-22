@@ -43,6 +43,7 @@ h1 {
 
 #app {
   background-color: $background-black;
+  overflow: hidden;
   @include basicFlexBox;
 }
 .setTimer {
@@ -92,7 +93,6 @@ h1 {
   p {
     @include minuteSubText;
   }
-
 }
 .navLogo {
   display: flex;

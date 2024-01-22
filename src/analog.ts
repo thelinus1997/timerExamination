@@ -91,7 +91,8 @@ timer.addEventListener("secondsUpdated", () => {
 
 // Add an event listener for the 'targetAchieved' event to handle timer completion
 timer.addEventListener("targetAchieved", () => {
-  console.log("Timer Finished!");
+  alert("Timer Finished!");
+  abortTimer();
   // Optionally perform any actions when the timer completes
 });
 
