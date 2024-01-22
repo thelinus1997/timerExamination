@@ -21,17 +21,19 @@
   bottom: 10%;
   color: $whiteFont;
 }
-.timesUpText {
+.breatheText {
   color: $whiteFont;
   position: absolute;
-  bottom: 40%;
+  bottom: 35%;
   font-size: 36px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 3.6px;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-47.5%);
+  width: 315px;
+  height: 47px;
 }
 #ellipseOne,
 #ellipseTwo,

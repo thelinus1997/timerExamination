@@ -9,8 +9,8 @@ export function breakView() {
   alarmSvgContainer.setAttribute("width", "50");
   alarmSvgContainer.setAttribute("height", "50");
   const alertText: HTMLElement = document.createElement("p");
-  alertText.classList.add("timesUpText");
-  alertText.innerText = "Times up!";
+  alertText.classList.add("breatheText");
+  alertText.innerText = "Pause & breathe";
   const ellipseOne: HTMLDivElement = document.createElement("div");
   ellipseOne.id = "ellipseOne";
 
@@ -23,13 +23,16 @@ export function breakView() {
   const ellipseFour: HTMLDivElement = document.createElement("div");
   ellipseFour.id = "ellipseFour";
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => setTimer());
+  button.addEventListener("click", () => resumeTimer());
   button.classList.add("newTimerButton");
-  button.innerText = "SET NEW TIMER";
+  button.innerText = "NO PAUSE, GO NOW!";
   ellipseOne.appendChild(ellipseTwo);
   ellipseTwo.appendChild(ellipseThree);
   ellipseThree.appendChild(ellipseFour);
   ellipseFour.appendChild(alarmSvgContainer);
   main.append(ellipseOne, alertText, button);
   app.appendChild(main);
+}
+function resumeTimer() {
+  alert("add code to make timer resume");
 }
