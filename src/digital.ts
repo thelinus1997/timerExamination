@@ -10,11 +10,6 @@ export function startCountdown() {
   // Create new elements only if they haven't been appended yet
   if (!contentAppended) {
     secTimerDisplay.classList.add("timerBoxDisplay");
-<<<<<<< HEAD
->>>>>>> Ellie
-
-=======
->>>>>>> Ellie
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
     navLogoTimerCont.classList.add("navLogoTimer");
     const logoCont: HTMLDivElement = document.createElement("div");
@@ -32,20 +27,6 @@ export function startCountdown() {
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
 
-<<<<<<< HEAD
- logoCont.append(svgCont, headerText);
-
- timerCont.append(logoCont, secTimerDisplay, button);
- button.append(timerCont);
- 
-
- timerCont.append(logoCont); 
- timerCont.append(secTimerDisplay);
- timerCont.append(button); 
-
-
- app.append(timerCont);
-=======
     const headerText: HTMLElement = document.createElement("p");
     headerText.classList.add("headerText");
     headerText.innerText = "interval";
@@ -54,7 +35,6 @@ export function startCountdown() {
     timerCont.append(logoCont);
     timerCont.append(secTimerDisplay);
     timerCont.append(button);
->>>>>>> Ellie
 
     app.append(timerCont);
 

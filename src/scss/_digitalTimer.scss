@@ -31,3 +31,8 @@
   font:  $titleFont;
  
 }
+
+.abortButton{
+  @include buttonStyle($background-white);
+  margin-bottom: 5rem;
+}
