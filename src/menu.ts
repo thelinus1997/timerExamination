@@ -11,6 +11,9 @@ export function createMenu() {
     document.getElementById('app')?.appendChild(logoCont);
     logoCont.append(svgCont);
 
+    //append logo container to #app
+    document.getElementById('app')?.appendChild(logoCont);
+
     const menuContainer = document.createElement('ul');
     menuContainer.classList.add('menu-Container');
 
@@ -23,13 +26,14 @@ export function createMenu() {
         // document.getElementById('app')?.appendChild(node);
         menuContainer.appendChild(node);
 
-        const appElement = document.getElementById('app');
-        appElement?.appendChild(menuContainer);
 
 
     });
+
+    const appElement = document.getElementById('app');
+    appElement?.appendChild(menuContainer);
 }
-console.log('hej');
+
 
 
 
