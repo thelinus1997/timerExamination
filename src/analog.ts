@@ -1,7 +1,7 @@
 import Timer from "easytimer.js";
-const app = document.querySelector<HTMLDivElement>("#app")!;
-const timer = new Timer();
+let timer = new Timer();
 
+const app = document.querySelector<HTMLDivElement>("#app")!;
 export function analogStart(minutes: number) {
   app.innerHTML = "";
   const mainContainer: HTMLDivElement = document.createElement("div");
@@ -40,22 +40,18 @@ export function analogStart(minutes: number) {
   mainContainer.append(logoCont, clockContainer, button);
   app.append(mainContainer);
   // Calculate the rotation angles based on the input minutes
-  const secondHandRotation = (360 / 60) * minutes;
-  const minuteHandRotation = (360 / 60 / 60) * minutes;
+  const secondHandRotation = 360 * minutes;
+  const minuteHandRotation = (360 / 60) * minutes;
 
   // Set up the rotation animation for the second hand
   secondHand.style.animation = `rotateClockwise ${
     minutes * 60
   }s linear infinite`;
-  secondHand.style.transform = `translate(-50%, -100%) rotate(0deg)`;
-  secondHand.addEventListener("animationend", handleAnimationEnd);
 
   // Set up the rotation animation for the minute hand
   minuteHand.style.animation = `rotateMinuteHand ${
-    minutes * 60 * 60
+    minutes * 60
   }s linear infinite`;
-  minuteHand.style.transform = `translate(-50%, -100%) rotate(0deg)`;
-  minuteHand.addEventListener("animationend", handleAnimationEnd);
 
   // Set up the keyframes for the rotation animations
   const styleSheet = document.styleSheets[0];
@@ -77,23 +73,27 @@ export function analogStart(minutes: number) {
       }`,
     styleSheet.cssRules.length
   );
+  timer.start({
+    countdown: true,
+    startValues: { minutes: minutes },
+    target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+  });
   function handleAnimationEnd() {
     alert("Timer Finished!");
   }
-  timer.start({
-    countdown: true,
-    startValues: { minutes: 1 },
-  });
-  timer.addEventListener("targetAchieved", function (e: any) {
-    // Timer has reached its target, handle accordingly
-    app.innerHTML = "";
-    alert("Timer finished!, add more code later!");
-  });
-  timer.addEventListener("secondsUpdated", function (e: any) {
-    // Update your UI or perform actions on each second update
-    console.log(timer.getTimeValues().toString());
-  });
 }
+// Add an event listener for the 'secondsUpdated' event to update the UI
+timer.addEventListener("secondsUpdated", () => {
+  // You can update the UI here with the current time, e.g., display on a label
+  const currentTime = timer.getTimeValues();
+  console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
+});
+
+// Add an event listener for the 'targetAchieved' event to handle timer completion
+timer.addEventListener("targetAchieved", () => {
+  console.log("Timer Finished!");
+  // Optionally perform any actions when the timer completes
+});
 
 function abortTimer() {
   window.location.reload();

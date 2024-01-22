@@ -17,4 +17,4 @@ console.log(app);
 // startLoading();
 // startCountdown();
 
-// visualTimerFunc();
+visualTimerFunc();
