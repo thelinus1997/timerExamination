@@ -1,9 +1,12 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
+let contentAppended = false;
+const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
 let secTimer: number = 10;
 let minTimer: number = 1;
 
 export function startCountdown() {
+<<<<<<< HEAD
   // Create a new  elements
   const secTimerDisplay: HTMLDivElement = document.createElement("div");
   secTimerDisplay.classList.add("timerBoxDisplay");
@@ -20,17 +23,34 @@ navLogoTimerCont.classList.add("navLogoTimer")
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
+=======
+  if (!contentAppended) {
+    // Create new elements
+    
+    secTimerDisplay.classList.add("timerBoxDisplay");
+<<<<<<< HEAD
+>>>>>>> Ellie
 
-  const svgCont: HTMLImageElement = document.createElement("img");
-  svgCont.setAttribute("type", "img/svg+xml");
-  svgCont.setAttribute("src", "../public/flippedLogo.svg");
-  svgCont.setAttribute("width", "32");
-  svgCont.setAttribute("height", "32");
+=======
+>>>>>>> Ellie
+    const navLogoTimerCont: HTMLDivElement = document.createElement("div");
+    navLogoTimerCont.classList.add("navLogoTimer");
+    const logoCont: HTMLDivElement = document.createElement("div");
+    logoCont.classList.add("navLogo");
+    const timerCont: HTMLDivElement = document.createElement("div");
+    timerCont.classList.add("timerCont");
+    const button: HTMLButtonElement = document.createElement("button");
+    button.addEventListener("click", () => abortTimer());
+    button.classList.add("greyButton");
+    button.innerText = "ABORT TIMER";
 
-  const headerText: HTMLElement = document.createElement("p");
-  headerText.classList.add("headerText");
-  headerText.innerText = "interval";
+    const svgCont: HTMLImageElement = document.createElement("img");
+    svgCont.setAttribute("type", "img/svg+xml");
+    svgCont.setAttribute("src", "../public/flippedLogo.svg");
+    svgCont.setAttribute("width", "32");
+    svgCont.setAttribute("height", "32");
 
+<<<<<<< HEAD
  logoCont.append(svgCont, headerText);
 
  timerCont.append(logoCont, secTimerDisplay, button);
@@ -43,8 +63,21 @@ navLogoTimerCont.classList.add("navLogoTimer")
 
 
  app.append(timerCont);
+=======
+    const headerText: HTMLElement = document.createElement("p");
+    headerText.classList.add("headerText");
+    headerText.innerText = "interval";
 
+    logoCont.append(svgCont, headerText);
+    timerCont.append(logoCont);
+    timerCont.append(secTimerDisplay);
+    timerCont.append(button);
+>>>>>>> Ellie
 
+    app.append(timerCont);
+
+    contentAppended = true;
+  }
 
   const intervalId = setInterval(() => {
     secTimer--;
@@ -68,7 +101,7 @@ navLogoTimerCont.classList.add("navLogoTimer")
   // Update the text content of the div using setInterval
   setInterval(() => {
     secTimerDisplay.textContent = `${minTimer}:${secTimer}`;
-}, 1000);
+  }, 1000);
 }
 
 // Start the countdown
@@ -79,9 +112,6 @@ const newNum = 3;
 let sum = varNum - newNum;
 console.log(sum);
 
-
-
 function abortTimer() {
   window.location.reload();
 }
-
