@@ -1,14 +1,14 @@
+import Timer from 'easytimer.js';
+  // Initialize EasyTimer
+ let timer = new Timer();
+
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
 const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
-let secTimer: number = 10;
-let minTimer: number = 1;
-
 export function startCountdown() {
+  // Create new elements only if they haven't been appended yet
   if (!contentAppended) {
-    // Create new elements
-    
     secTimerDisplay.classList.add("timerBoxDisplay");
     const navLogoTimerCont: HTMLDivElement = document.createElement("div");
     navLogoTimerCont.classList.add("navLogoTimer");
@@ -18,7 +18,7 @@ export function startCountdown() {
     timerCont.classList.add("timerCont");
     const button: HTMLButtonElement = document.createElement("button");
     button.addEventListener("click", () => abortTimer());
-    button.classList.add("greyButton");
+    button.classList.add("abortButton");
     button.innerText = "ABORT TIMER";
 
     const svgCont: HTMLImageElement = document.createElement("img");
@@ -39,41 +39,33 @@ export function startCountdown() {
     app.append(timerCont);
 
     contentAppended = true;
+    timer.start({
+      countdown: true,
+      startValues: { minutes: 10 },
+      target: { seconds: 0 },
+    });
+
   }
+ 
 
-  const intervalId = setInterval(() => {
-    secTimer--;
+  // Update display on every tick
+  timer.addEventListener('secondsUpdated', function (e: any) {
+    const currentTime = timer.getTimeValues();
+    const formattedTime = `${currentTime.minutes}:${currentTime.seconds}`;
+    secTimerDisplay.textContent = formattedTime;
+  });
 
-    // check if the time is 0 then it will display "TIMES UP!"
-    if (secTimer < 0) {
-      secTimer = 59; // reset seconds
-      minTimer--;
-
-      // Check if the countdown is finished
-      if (minTimer <= 0 && secTimer <= 0) {
-        clearInterval(intervalId);
-        console.log("TIMES UP!");
-      }
-    }
-
-    // Display the current time
-    console.log(`${minTimer}:${secTimer}`);
-  }, 1000); // 1000 milliseconds = 1 second
-
-  // Update the text content of the div using setInterval
-  setInterval(() => {
-    secTimerDisplay.textContent = `${minTimer}:${secTimer}`;
-  }, 1000);
+  // Triggered when countdown is completed
+  timer.addEventListener('targetAchieved', function (e: any) {
+    secTimerDisplay.textContent = 'TIMES UP!';
+  });
 }
 
-// Start the countdown
+// Call the startCountdown function
 startCountdown();
 
-const varNum = 20;
-const newNum = 3;
-let sum = varNum - newNum;
-console.log(sum);
-
 function abortTimer() {
+  // Stop the timer and reload the window
+  timer.stop();
   window.location.reload();
 }
