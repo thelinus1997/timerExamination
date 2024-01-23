@@ -1,6 +1,18 @@
-const app = document.querySelector<HTMLDivElement>("#app")!;
+import Timer from "easytimer.js";
 import { setTimer } from "./setTimer";
-export function breakView() {
+import { analogStart } from "./analog";
+const app = document.querySelector<HTMLDivElement>("#app")!;
+
+let breakTimer = new Timer();
+
+/*
+Skicka med timern som pausas från till exempel analog. till exempel pausas timer vid 4:50
+skapa ny timer med 5min countdown.
+då 5min är över resuma första timern och återställ sidan till föregående vy.
+*/
+
+export function breakView(inputTimer: Timer, typeOfTimer: String) {
+  console.log(inputTimer);
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
   main.classList.add("alarmMainCont");
@@ -32,6 +44,46 @@ export function breakView() {
   ellipseFour.appendChild(alarmSvgContainer);
   main.append(ellipseOne, alertText, button);
   app.appendChild(main);
+  breakTimer.start({
+    countdown: true,
+    startValues: { seconds: 5 },
+    target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+  });
+  breakTimer.addEventListener("secondsUpdated", () => {
+    console.log(breakTimer);
+    // You can update the UI here with the current time, e.g., display on a label
+    const currentTime = breakTimer.getTimeValues();
+    console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
+  });
+
+  // Add an event listener for the 'targetAchieved' event to handle timer completion
+  breakTimer.addEventListener("targetAchieved", () => {
+    // You can update the UI here with the current time, e.g., display on a label
+    const currentTime = inputTimer.getTimeValues();
+
+    switch (typeOfTimer) {
+      case "analog":
+        analogStart(currentTime.minutes);
+        break;
+      case "digital":
+        // Check for string at index 1
+        break;
+      case "visual":
+        // Check for string at index 2
+        break;
+      case "text":
+        // Check for string at index 3
+        break;
+      case "cirkles":
+        // Check for string at index 4
+        break;
+      default:
+        // Handle the case when index is not within the expected range
+        break;
+
+      // Kod som går tillbaka till föregående
+    }
+  });
 }
 function resumeTimer() {
   alert("add code to make timer resume");
