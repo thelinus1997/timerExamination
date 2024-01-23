@@ -2,6 +2,7 @@ import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
+import { event } from "jquery";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
@@ -96,6 +97,8 @@ function buildPage(input: String) {
   const breakContainer: HTMLDivElement = document.createElement("div");
   breakContainer.classList.add("choiceSubContainer");
 
+
+
   const checkBoxOne: HTMLInputElement = document.createElement("input");
   checkBoxOne.type = "checkbox";
   const checkBoxTwo: HTMLInputElement = document.createElement("input");
@@ -105,6 +108,37 @@ function buildPage(input: String) {
   textOne.innerText = "intervals";
   const textTwo: HTMLElement = document.createElement("p");
   textTwo.innerText = "5 min break / interval";
+
+  // const checkBoxOne: HTMLInputElement = document.createElement('input');
+  // checkBoxOne.type = "checkbox";
+
+
+  //function to check if box1 is selected
+  checkBoxOne.addEventListener('change', () => {
+    if (checkBoxOne.checked) {
+      console.log('CheckboxOne is selected');
+    } else {
+      console.log('CheckboxOne is not selected');
+    }
+
+  });
+
+  checkBoxTwo.addEventListener("change", function (this: HTMLInputElement, event: Event): void {
+    if (this.checked) {
+      console.log('Checkboxtwo is selected');
+    } else {
+      console.log('Checkboxtwo is not selected');
+    }
+  });
+
+  // checkBoxTwo.addEventListener('Change'), (event: Event) => {
+  //   if ((event.target as HTMLInputElement).checked) {
+  //     console.log('Checkboxtwo is selected');
+  //   } else {
+  //     console.log('Checkboxtwo is not selected');
+  //   }
+  // }
+
 
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => getTimerValue(minutes, input));
@@ -117,6 +151,7 @@ function buildPage(input: String) {
   timeContainer.append(arrowLeft, minuteContainer, arrowRight);
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
+
 }
 function getTimerValue(input: number, alarmType: String) {
   console.log(input, alarmType);
