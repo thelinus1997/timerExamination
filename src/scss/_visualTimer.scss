@@ -2,6 +2,18 @@
 @import "fonts";
 @import "mixins";
 
+
+*{
+  box-sizing: border-box;
+}
+
+
+body, html{
+	@include size(100%, 100%);
+	background: $bg;
+	overflow: hidden;
+}
+
 .visualTimerCont {
   background-color: $background-black;
   @include basicFlexBox;
@@ -9,6 +21,7 @@
 
 .navLogoVisual {
   color: white;
+  @include navLogo;
 }
 
 .visualTimer {
@@ -27,6 +40,8 @@
 }
 
 .glassUpper{
+  position: relative;
+  z-index: 200;
 	background-color: $glass;
 	top: 10%;
 	@include cross(transform,rotate(-50deg)) ;
