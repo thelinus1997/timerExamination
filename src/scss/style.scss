@@ -94,15 +94,7 @@ h1 {
     @include minuteSubText;
   }
 }
-.navLogo {
-  display: flex;
-  width: 32px;
-  height: 32px;
-  align-items: flex-start;
-  gap: 2px;
-  flex-shrink: 0;
-  margin: 1rem 0 0 1rem;
-}
+
 .choiceSubContainer {
   display: flex;
   width: 277px;
