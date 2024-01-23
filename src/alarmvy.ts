@@ -1,4 +1,5 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
+import { startLoading } from "./loadingScreen";
 import { setTimer } from "./setTimer";
 export function alarmView() {
   app.innerHTML = "";
@@ -23,7 +24,7 @@ export function alarmView() {
   const ellipseFour: HTMLDivElement = document.createElement("div");
   ellipseFour.id = "ellipseFour";
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => setTimer());
+  button.addEventListener("click", () => startLoading());
   button.classList.add("newTimerButton");
   button.innerText = "SET NEW TIMER";
   ellipseOne.appendChild(ellipseTwo);

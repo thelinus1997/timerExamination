@@ -1,11 +1,39 @@
 import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
+import { startCountdown } from "./digital";
+import { visualTimerFunc } from "./visual";
+
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
+const alarmTypes: Array<String> = [
+  "analog",
+  "digital",
+  "visual",
+  "text",
+  "circles",
+];
 
-export function setTimer() {
+export function setTimer(alarmChoice: number) {
   app.innerHTML = "";
-  buildPage();
+  let chosenType: String = "";
+  switch (alarmChoice) {
+    case 0:
+      chosenType = alarmTypes[0];
+      break;
+    case 1:
+      chosenType = alarmTypes[1];
+      break;
+    case 2:
+      chosenType = alarmTypes[2];
+      break;
+    case 3:
+      chosenType = alarmTypes[3];
+      break;
+    case 4:
+      chosenType = alarmTypes[4];
+      break;
+  }
+  buildPage(chosenType);
 }
 console.log(app);
 function updateNegative() {
@@ -31,7 +59,7 @@ function updatePositive() {
   minutesText.innerText = minutes.toString();
 }
 
-function buildPage() {
+function buildPage(input: String) {
   console.log("hej");
   const main: HTMLDivElement = document.createElement("div");
   main.classList.add("setTimer");
@@ -78,7 +106,7 @@ function buildPage() {
   textTwo.innerText = "5 min break / interval";
 
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => getTimerValue(minutes));
+  button.addEventListener("click", () => getTimerValue(minutes, input));
   button.classList.add("whiteButton");
   button.innerText = "START TIMER";
   intervalContainer.append(checkBoxOne, textOne);
@@ -89,7 +117,21 @@ function buildPage() {
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
 }
-function getTimerValue(input: number) {
-  console.log(input);
-  alarmView();
+function getTimerValue(input: number, alarmType: String) {
+  console.log(input, alarmType);
+  if (alarmType.includes("ANALOG")) {
+    analogStart(input);
+  }
+  if (alarmType.includes("DIGITAL")) {
+    startCountdown();
+  }
+  if (alarmType.includes("VISUAL")) {
+    visualTimerFunc();
+  }
+  if (alarmType.includes("TEXT")) {
+    console.log("not finished");
+  }
+  if (alarmType.includes("CIRKLES")) {
+    console.log("object");
+  }
 }
