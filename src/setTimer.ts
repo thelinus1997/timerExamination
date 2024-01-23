@@ -119,19 +119,19 @@ function buildPage(input: String) {
 }
 function getTimerValue(input: number, alarmType: String) {
   console.log(input, alarmType);
-  if (alarmType.includes("ANALOG")) {
+  if (alarmType.includes("analog")) {
     analogStart(input);
   }
-  if (alarmType.includes("DIGITAL")) {
+  if (alarmType.includes("digital")) {
     startCountdown();
   }
-  if (alarmType.includes("VISUAL")) {
+  if (alarmType.includes("visual")) {
     visualTimerFunc();
   }
-  if (alarmType.includes("TEXT")) {
+  if (alarmType.includes("text")) {
     console.log("not finished");
   }
-  if (alarmType.includes("CIRKLES")) {
+  if (alarmType.includes("cirkles")) {
     console.log("object");
   }
 }

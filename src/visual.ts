@@ -1,6 +1,6 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
-const myVarVal = "60s"
+const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
 export function visualTimerFunc() {
   if (!contentAppended) {
@@ -50,12 +50,12 @@ export function visualTimerFunc() {
     logoCont.appendChild(svgCont);
     visualTimerCont.append(logoCont);
     visualTimerCont.append(visualTimer);
-    frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet)
+    frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
     visualTimer.append(frame);
     visualTimerCont.append(button);
 
     app.append(visualTimerCont);
-    
+
     function abortTimer() {
       window.location.reload();
     }
@@ -64,11 +64,6 @@ export function visualTimerFunc() {
   }
 }
 
-
-
-
 /* beroende på input tid behöver du skapa logic  */
 
 // Start the countdown
-visualTimerFunc();
-

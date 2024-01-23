@@ -2,9 +2,9 @@ import Timer from "easytimer.js";
 // Initialize EasyTimer
 let timer = new Timer();
 
-const app = document.querySelector<HTMLDivElement>("#app")!;
-let contentAppended = false;
-const secTimerDisplay: HTMLDivElement = document.createElement("div");
+// const app = document.querySelector<HTMLDivElement>("#app")!;
+// let contentAppended = false;
+// const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
 export function startCountdown() {
   // Create a new  elements

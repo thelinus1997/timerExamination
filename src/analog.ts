@@ -1,9 +1,11 @@
 import Timer from "easytimer.js";
+import { breakView } from "./breakview";
 let timer = new Timer();
-
+let typeOfTimer = "";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 export function analogStart(minutes: number) {
   app.innerHTML = "";
+  typeOfTimer = "analog";
   const mainContainer: HTMLDivElement = document.createElement("div");
   mainContainer.classList.add("analogContainer");
   const logoCont: HTMLDivElement = document.createElement("div");
@@ -84,8 +86,13 @@ export function analogStart(minutes: number) {
 }
 // Add an event listener for the 'secondsUpdated' event to update the UI
 timer.addEventListener("secondsUpdated", () => {
+  console.log(timer);
   // You can update the UI here with the current time, e.g., display on a label
   const currentTime = timer.getTimeValues();
+  if (currentTime.minutes == 4 && currentTime.seconds == 59) {
+    timer.pause();
+    breakView(timer, typeOfTimer);
+  }
   console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
 });
 
