@@ -43,7 +43,7 @@ export function visualTimerFunc() {
 
     const svgCont: HTMLImageElement = document.createElement("img");
     svgCont.setAttribute("type", "img/svg+xml");
-    svgCont.setAttribute("src", "../public/flippedLogo.svg");
+    svgCont.setAttribute("src", "./public/flippedLogo.svg");
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
 
