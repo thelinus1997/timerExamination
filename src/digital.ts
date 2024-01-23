@@ -1,7 +1,7 @@
 import Timer from "easytimer.js";
 // Initialize EasyTimer
 let timer = new Timer();
-const app = document.querySelector<HTMLDivElement>("#app")!;
+
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
