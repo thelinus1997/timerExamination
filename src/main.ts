@@ -20,7 +20,7 @@ import { breakView } from "./breakview";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
-startLoading();
+//startLoading();
 
 //startLoading();
 //startCountdown();
@@ -37,5 +37,4 @@ startLoading();
 
 // //startLoading();
 // startCountdown();
-
-// visualTimerFunc();
+startLoading()

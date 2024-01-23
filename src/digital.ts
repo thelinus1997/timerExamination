@@ -1,7 +1,9 @@
 import Timer from "easytimer.js";
 // Initialize EasyTimer
 let timer = new Timer();
+const app = document.querySelector<HTMLDivElement>("#app")!;
 
+let contentAppended=false;
 // const app = document.querySelector<HTMLDivElement>("#app")!;
 // let contentAppended = false;
 // const secTimerDisplay: HTMLDivElement = document.createElement("div");
@@ -46,7 +48,7 @@ export function startCountdown() {
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
 
-    logoCont.append(svgCont, headerText);
+    logoCont.append(svgCont);
 
     timerCont.append(logoCont, secTimerDisplay, button);
     button.append(timerCont);
