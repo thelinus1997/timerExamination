@@ -1,5 +1,6 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
 import { setTimer } from "./setTimer";
+
 export function breakView() {
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
