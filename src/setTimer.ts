@@ -1,5 +1,6 @@
 import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
+import { breakView } from "./breakview";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
 
@@ -92,4 +93,5 @@ function buildPage() {
 function getTimerValue(input: number) {
   console.log(input);
   alarmView();
+  // breakView();
 }
