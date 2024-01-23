@@ -2,8 +2,8 @@ import Timer from "easytimer.js";
 // Initialize EasyTimer
 let timer = new Timer();
 
-// const app = document.querySelector<HTMLDivElement>("#app")!;
-// let contentAppended = false;
+const app = document.querySelector<HTMLDivElement>("#app")!;
+let contentAppended = false;
 // const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
 export function startCountdown() {
@@ -45,8 +45,6 @@ export function startCountdown() {
     svgCont.setAttribute("src", "../public/flippedLogo.svg");
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
-
-    logoCont.append(svgCont, headerText);
 
     timerCont.append(logoCont, secTimerDisplay, button);
     button.append(timerCont);
@@ -90,7 +88,7 @@ export function startCountdown() {
 }
 
 // Call the startCountdown function
-startCountdown();
+//
 
 function abortTimer() {
   // Stop the timer and reload the window
