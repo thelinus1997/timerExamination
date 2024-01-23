@@ -27,7 +27,7 @@ export function visualTimerFunc() {
     fillet.classList.add("fillet");
 
     const glassBottom = document.createElement("div");
-    glassBottom.classList.add("sandBottom");
+    glassBottom.classList.add("glassbottom");
 
     const sandBottom = document.createElement("div");
     sandBottom.classList.add("sandBottom");

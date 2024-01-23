@@ -12,8 +12,6 @@
 }
 
 .visualTimer {
- 
-
   position: relative;
 	top: 15%;
 	margin: auto;
@@ -29,20 +27,21 @@
 }
 
 .glassUpper{
-	background-color:  $glass;
+	background-color: $glass;
 	top: 10%;
-	@include cross(transform,rotate(-45deg)) ;
+	@include cross(transform,rotate(-50deg)) ;
 }
 	
 .glassBottom{
 	background-color: rgba( $glass, .4 );
-	top: 36%;
+	top: 50%;
+  bottom: 50%;
 	@include cross(transform,rotate(135deg));
 }
 
 %sand {
     position: absolute;
-    @include size(80%, 80%);
+    @include size(30%, 30%);
     left: 10%;
     top: 10%;
     border-radius: 100% 100% 100% 0%;
@@ -68,12 +67,12 @@
   }
   
 .fillet{
-	position: absolute;
-	@include size(115%,4px);
+	
+	@include size(20%,4px);
 	background: $sand;
 	@include cross(animation, fillet 1s linear infinite 0s);
 	left: -2%;
-	top: 105%;
+	top: 100%;
 }
 
 .frame{
@@ -185,14 +184,3 @@
     }
   }
   
-
-   /* border-top: 10rem solid white;
-  border-left: 10rem solid transparent;
-  border-right: 10rem solid transparent;
-  border-bottom: 10rem solid white;
-  border-radius:40%;
-  display: flex;
-  @include basicFlexBox;
-
-  width: 0;
-  height: 0; */
