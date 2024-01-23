@@ -27,7 +27,7 @@ startLoading();
 //visualTimerFunc();
 
 //visualTimerFunc();
-/* const timer = new Timer(); */
+// const timer = new Timer();
 // createMenu();
 // startLoading();
 // startCountdown();

@@ -37,3 +37,30 @@ export function breakView() {
 function resumeTimer() {
   alert("add code to make timer resume");
 }
+
+// timer.start({
+//   countdown: true,
+//   startValues: { minutes: 0 },
+//   target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+// });
+// function handleAnimationEnd() {
+//   alert("Timer Finished!");
+// }
+
+// // Add an event listener for the 'secondsUpdated' event to update the UI
+// timer.addEventListener("secondsUpdated", () => {
+//   // You can update the UI here with the current time, e.g., display on a label
+//   const currentTime = timer.getTimeValues();
+//   console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
+// });
+
+// // Add an event listener for the 'targetAchieved' event to handle timer completion
+// timer.addEventListener("targetAchieved", () => {
+//   alert("Timer Finished!");
+//   abortTimer();
+//   // Optionally perform any actions when the timer completes
+// });
+
+// function abortTimer() {
+//   window.location.reload();
+// }
