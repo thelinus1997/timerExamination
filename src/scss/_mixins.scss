@@ -62,3 +62,20 @@
   width: 100vw;
   height: 100vh;
 }
+//hourglass
+@mixin pseudo ($position: absolute, $display: block, $content: ''){
+	position: $position;
+	display: $display;
+	content: '';}
+
+@mixin size($height, $width){
+	height: $height;
+	width: $width;
+}
+
+@mixin cross($property, $val){
+	-webkit-#{$property}: $val;
+	-moz-#{$property}: $val;
+	-ms-#{$property}: $val;
+	#{$property}: $val;
+}

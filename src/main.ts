@@ -3,6 +3,7 @@ import "./scss/_digitalTimer.scss"
 import "./scss/_digitalTimer.scss";
 import "./scss/_alarmvy.scss";
 import "./scss/_breakvy.scss";
+import "./scss/_visualTimer.scss";
 import { startLoading } from "./loadingScreen";
 import "./analog";
 import "./scss/_analog.scss";
@@ -11,6 +12,7 @@ import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 import { Timer } from "easytimer.js";
+
 
 
 
@@ -24,7 +26,6 @@ console.log(app);
 //startLoading();
 //startCountdown();
 visualTimerFunc();
-
 //visualTimerFunc();
 /* const timer = new Timer(); */
 // createMenu();
@@ -32,7 +33,7 @@ visualTimerFunc();
 // startCountdown();
 // startLoading();
 // startCountdown();
-breakView(); //startCountdown();
+//breakView(); 
 
 // //startLoading();
 // startCountdown();

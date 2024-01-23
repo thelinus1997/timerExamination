@@ -1,3 +1,198 @@
 @import "colors";
 @import "fonts";
 @import "mixins";
+
+.visualTimerCont {
+  background-color: $background-black;
+  @include basicFlexBox;
+}
+
+.navLogoVisual {
+  color: white;
+}
+
+.visualTimer {
+ 
+
+  position: relative;
+	top: 15%;
+	margin: auto;
+	@include size(500px,500px);
+	&::before{
+		@include pseudo;
+		bottom: 39.8%;
+		left: 32%;
+		@include size(3%,35%);
+		border-radius: 50%;
+		background-image: radial-gradient($d-grey 5%, transparent 75%);
+    }
+}
+
+.glassUpper{
+	background-color:  $glass;
+	top: 10%;
+	@include cross(transform,rotate(-45deg)) ;
+}
+	
+.glassBottom{
+	background-color: rgba( $glass, .4 );
+	top: 36%;
+	@include cross(transform,rotate(135deg));
+}
+
+%sand {
+    position: absolute;
+    @include size(80%, 80%);
+    left: 10%;
+    top: 10%;
+    border-radius: 100% 100% 100% 0%;
+    z-index: 2;
+  
+    &::after {
+      @include pseudo;
+      @include size(100%, 100%);
+      border-radius: 100% 100% 100% 0%;
+      box-shadow: inset -5px 0px 0px rgba(lighten($glass, 8%), .8);
+      background: rgba($glass, .4);
+    }
+  }
+  
+  .sandUpper {
+    @extend %sand;
+    @include cross(animation, sandDown 10s linear infinite 0s);
+  }
+  
+  .sandBottom {
+    @extend %sand;
+    @include cross(animation, sandUp 10s linear infinite 0s);
+  }
+  
+.fillet{
+	position: absolute;
+	@include size(115%,4px);
+	background: $sand;
+	@include cross(animation, fillet 1s linear infinite 0s);
+	left: -2%;
+	top: 105%;
+}
+
+.frame{
+	position: absolute;
+	@include size(52%,30%);
+	top: 7%;
+	left: 34.7%;
+	border-top: 15px solid darken($brown, 20%);
+	border-bottom: 15px solid darken($brown, 20%);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	z-index: 0;
+	&::before{
+		@include pseudo;
+		@include size(100%,75%);
+		left: 49%;
+		border-left: 6px solid $brown;
+    }
+    
+	&::after{
+		@include pseudo;
+		@include size(100%,90%);
+		left: 1%;
+		border-left: 6px solid $brown;
+		border-right: 6px solid $brown;
+    }
+}
+// keyframes
+@keyframes sandDown {
+    0% {
+      background-image: linear-gradient(45deg, $sand 100%, transparent 0%);
+    }
+    10% {
+      background-image: linear-gradient(45deg, $sand 90%, transparent 0%);
+    }
+    20% {
+      background-image: linear-gradient(45deg, $sand 80%, transparent 0%);
+    }
+    30% {
+      background-image: linear-gradient(45deg, $sand 70%, transparent 0%);
+    }
+    40% {
+      background-image: linear-gradient(45deg, $sand 60%, transparent 0%);
+    }
+    50% {
+      background-image: linear-gradient(45deg, $sand 50%, transparent 0%);
+    }
+    60% {
+      background-image: linear-gradient(45deg, $sand 40%, transparent 0%);
+    }
+    70% {
+      background-image: linear-gradient(45deg, $sand 30%, transparent 0%);
+    }
+    80% {
+      background-image: linear-gradient(45deg, $sand 20%, transparent 0%);
+    }
+    90% {
+      background-image: linear-gradient(45deg, $sand 10%, transparent 0%);
+    }
+    100% {
+      background-image: linear-gradient(45deg, $sand 0%, transparent 0%);
+    }
+  }
+  
+  @keyframes sandUp {
+    0% {
+      background-image: linear-gradient(45deg, transparent 100%, $sand 0%);
+    }
+    10% {
+      background-image: linear-gradient(45deg, transparent 90%, $sand 0%);
+    }
+    20% {
+      background-image: linear-gradient(45deg, transparent 80%, $sand 0%);
+    }
+    30% {
+      background-image: linear-gradient(45deg, transparent 70%, $sand 0%);
+    }
+    40% {
+      background-image: linear-gradient(45deg, transparent 60%, $sand 0%);
+    }
+    50% {
+      background-image: linear-gradient(45deg, transparent 50%, $sand 0%);
+    }
+    60% {
+      background-image: linear-gradient(45deg, transparent 40%, $sand 0%);
+    }
+    70% {
+      background-image: linear-gradient(45deg, transparent 30%, $sand 0%);
+    }
+    80% {
+      background-image: linear-gradient(45deg, transparent 20%, $sand 0%);
+    }
+    90% {
+      background-image: linear-gradient(45deg, transparent 10%, $sand 0%);
+    }
+    100% {
+      background-image: linear-gradient(45deg, transparent 0%, $sand 0%);
+    }
+  }
+  
+  @keyframes fillet {
+    0% {
+      @include cross(transform, rotate(-135deg) scale(1, 0.1));
+      transform-origin: top left;
+    }
+    100% {
+      @include cross(transform, rotate(-135deg) scale(1, 1));
+      transform-origin: top left;
+    }
+  }
+  
+
+   /* border-top: 10rem solid white;
+  border-left: 10rem solid transparent;
+  border-right: 10rem solid transparent;
+  border-bottom: 10rem solid white;
+  border-radius:40%;
+  display: flex;
+  @include basicFlexBox;
+
+  width: 0;
+  height: 0; */
