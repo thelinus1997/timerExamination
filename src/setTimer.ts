@@ -122,7 +122,7 @@ function getTimerValue(input: number, alarmType: String) {
   console.log(input, alarmType);
   if (alarmType.includes("analog")) {
     //skicka med input minuter + valet du gjorde. (0 = inget val, 1 = interval, 2 = 5min break)
-    analogStart(input, choice);
+    analogStart(input, 2);
   }
   if (alarmType.includes("digital")) {
     startCountdown(input);
