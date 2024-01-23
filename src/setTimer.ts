@@ -12,6 +12,7 @@ const alarmTypes: Array<String> = [
   "text",
   "circles",
 ];
+let choice = 0;
 
 export function setTimer(alarmChoice: number) {
   app.innerHTML = "";
@@ -99,7 +100,7 @@ function buildPage(input: String) {
   checkBoxOne.type = "checkbox";
   const checkBoxTwo: HTMLInputElement = document.createElement("input");
   checkBoxTwo.type = "checkbox";
-
+  //eventlisterner sparar 0-2 beroende på vad som är iklickat (göra genom if sats)
   const textOne: HTMLElement = document.createElement("p");
   textOne.innerText = "intervals";
   const textTwo: HTMLElement = document.createElement("p");
@@ -120,10 +121,11 @@ function buildPage(input: String) {
 function getTimerValue(input: number, alarmType: String) {
   console.log(input, alarmType);
   if (alarmType.includes("analog")) {
-    analogStart(input);
+    //skicka med input minuter + valet du gjorde. (0 = inget val, 1 = interval, 2 = 5min break)
+    analogStart(input, choice);
   }
   if (alarmType.includes("digital")) {
-    startCountdown();
+    startCountdown(input);
   }
   if (alarmType.includes("visual")) {
     visualTimerFunc();

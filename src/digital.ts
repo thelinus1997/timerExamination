@@ -3,11 +3,13 @@ import Timer from "easytimer.js";
 let timer = new Timer();
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
 // const secTimerDisplay: HTMLDivElement = document.createElement("div");
 
-export function startCountdown() {
+export function startCountdown(
+  minutes //variabel som är 0-2 (valet du gjorde), 0= vanlig timer, 1= interval, 2= breaks
+) {
+  app.innerHTML = "";
   // Create a new  elements
   const secTimerDisplay: HTMLDivElement = document.createElement("div");
   secTimerDisplay.classList.add("timerBoxDisplay");
@@ -48,7 +50,6 @@ export function startCountdown() {
     svgCont.setAttribute("height", "32");
 
     timerCont.append(logoCont, secTimerDisplay, button);
-    button.append(timerCont);
 
     timerCont.append(logoCont);
     timerCont.append(secTimerDisplay);
@@ -70,7 +71,7 @@ export function startCountdown() {
     contentAppended = true;
     timer.start({
       countdown: true,
-      startValues: { minutes: 10 },
+      startValues: { minutes: minutes },
       target: { seconds: 0 },
     });
   }
