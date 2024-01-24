@@ -1,10 +1,11 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
+import { alarmView } from "./alarmvy";
 let timer = new Timer();
 let typeOfTimer = "";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-export function analogStart(minutes: number, extraChoice) {
+export function analogStart(minutes: number, extraChoice: number) {
   app.innerHTML = "";
   typeOfTimer = "analog";
   const mainContainer: HTMLDivElement = document.createElement("div");
@@ -74,34 +75,82 @@ export function analogStart(minutes: number, extraChoice) {
       }`,
     styleSheet.cssRules.length
   );
-  timer.start({
-    countdown: true,
-    startValues: { minutes: minutes },
-    target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
-  });
+
+  if (extraChoice == 0) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    // Add an event listener for the 'secondsUpdated' event to update the UI
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alert("Timer Finished!");
+      abortTimer();
+      // Optionally perform any actions when the timer completes
+    });
+  }
+
+  if (extraChoice == 1) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      analogStart(minutes, extraChoice);
+      // Optionally perform any actions when the timer completes
+    });
+  }
+  if (extraChoice == 2) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log("in break version");
+      const currentTime = timer.getTimeValues();
+      console.log(minutes);
+      console.log(currentTime.minutes);
+      if (currentTime.minutes + 1 == minutes - 5) {
+        console.log("-5 bro");
+        breakView(timer, "analog", extraChoice);
+      }
+      // You can update the UI here with the current time, e.g., display on a label
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alarmView();
+      // Optionally perform any actions when the timer completes
+    });
+  }
   function handleAnimationEnd() {
     alert("Timer Finished!");
   }
-  // Add an event listener for the 'secondsUpdated' event to update the UI
-  timer.addEventListener("secondsUpdated", () => {
-    console.log(timer);
-    // You can update the UI here with the current time, e.g., display on a label
-    const currentTime = timer.getTimeValues();
-    console.log(extraChoice);
-    if (extraChoice == 2) {
-      if (currentTime.minutes == minutes - 6) {
-        breakView(timer, typeOfTimer);
-      }
-    }
-    console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
-  });
-
-  // Add an event listener for the 'targetAchieved' event to handle timer completion
-  timer.addEventListener("targetAchieved", () => {
-    alert("Timer Finished!");
-    abortTimer();
-    // Optionally perform any actions when the timer completes
-  });
 }
 
 function abortTimer() {

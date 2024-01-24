@@ -1,5 +1,5 @@
 import { analogStart } from "./analog";
-import { alarmView } from "./alarmvy";
+import { alarmView } from "./timesupvy";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 import { event } from "jquery";
@@ -118,25 +118,44 @@ function buildPage(input: String) {
   // const checkBoxOne: HTMLInputElement = document.createElement('input');
   // checkBoxOne.type = "checkbox";
 
-
   //function to check if box1 is selected
-  checkBoxOne.addEventListener('change', () => {
+  checkBoxOne.addEventListener("change", () => {
     if (checkBoxOne.checked) {
-      console.log('CheckboxOne is selected');
+      if (checkBoxTwo.checked) {
+        checkBoxTwo.checked = false;
+        console.log("CheckboxOne is selected");
+        choice = 1;
+        console.log(choice);
+      } else {
+        console.log("CheckboxOne is selected");
+        choice = 1;
+        console.log(choice);
+      }
     } else {
-      console.log('CheckboxOne is not selected');
+      console.log("CheckboxOne is not selected");
+      choice = 0;
+      console.log(choice);
     }
-
   });
 
-  checkBoxTwo.addEventListener("change", function (this: HTMLInputElement, event: Event): void {
-    if (this.checked) {
-      console.log('Checkboxtwo is selected');
+  checkBoxTwo.addEventListener("change", () => {
+    if (checkBoxTwo.checked) {
+      if (checkBoxOne.checked) {
+        checkBoxOne.checked = false;
+        console.log("CheckboxTwo is selected");
+        choice = 2;
+        console.log(choice);
+      } else {
+        console.log("CheckboxTwo is selected");
+        choice = 2;
+        console.log(choice);
+      }
     } else {
-      console.log('Checkboxtwo is not selected');
+      console.log("CheckboxTwo is not selected");
+      choice = 0;
+      console.log(choice);
     }
   });
-
   // checkBoxTwo.addEventListener('Change'), (event: Event) => {
   //   if ((event.target as HTMLInputElement).checked) {
   //     console.log('Checkboxtwo is selected');
@@ -145,9 +164,8 @@ function buildPage(input: String) {
   //   }
   // }
 
-
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => getTimerValue(minutes, input));
+  button.addEventListener("click", () => getTimerValue(minutes, input, choice));
   button.classList.add("whiteButton");
   button.innerText = "START TIMER";
   intervalContainer.append(checkBoxOne, textOne);
@@ -157,19 +175,18 @@ function buildPage(input: String) {
   timeContainer.append(arrowLeft, minuteContainer, arrowRight);
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
-
 }
-function getTimerValue(input: number, alarmType: String) {
+function getTimerValue(input: number, alarmType: String, extraChoice) {
   console.log(input, alarmType);
   if (alarmType.includes("analog")) {
     //skicka med input minuter + valet du gjorde. (0 = inget val, 1 = interval, 2 = 5min break)
-    analogStart(input, 2);
+    analogStart(input, extraChoice);
   }
   if (alarmType.includes("digital")) {
-    startCountdown(input);
+    startCountdown(input, extraChoice);
   }
   if (alarmType.includes("visual")) {
-    visualTimerFunc();
+    visualTimerFunc(input);
   }
   if (alarmType.includes("text")) {
     console.log("not finished");

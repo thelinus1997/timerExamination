@@ -13,7 +13,7 @@ skapa ny timer med 5min countdown.
 då 5min är över resuma första timern och återställ sidan till föregående vy.
 */
 
-export function breakView(inputTimer: Timer, typeOfTimer: String) {
+export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
   console.log(inputTimer);
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
@@ -65,10 +65,10 @@ export function breakView(inputTimer: Timer, typeOfTimer: String) {
 
     switch (typeOfTimer) {
       case "analog":
-        analogStart(currentTime.minutes, 0);
+        analogStart(currentTime.minutes, extraChoice);
         break;
       case "digital":
-        startCountdown(currentTime.minutes);
+        startCountdown(currentTime.minutes, extraChoice);
         break;
       case "visual":
         visualTimerFunc();
