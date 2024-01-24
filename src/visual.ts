@@ -1,3 +1,5 @@
+import Timer from "easytimer.js";
+let timer = new Timer();
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
 const myVarVal = "60s";
