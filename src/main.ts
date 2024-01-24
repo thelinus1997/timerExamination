@@ -1,9 +1,16 @@
-import "./scss/style.scss";
+import "./scss/_alarmvy.scss";
+import "./scss/_analog.scss";
+import "./scss/_breakvy.scss";
+import "./scss/_colors.scss";
 import "./scss/_digitalTimer.scss";
+import "./scss/_fonts.scss";
+import "./scss/_menu.scss";
+import "./scss/_mixins.scss";
+import "./scss/_visualTimer.scss";
+import "./scss/style.scss";
 import { startLoading } from "./loadingScreen";
 import "./analog";
-import "./scss/_analog.scss";
-import "./scss/_visualTimer.scss"
+
 import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
