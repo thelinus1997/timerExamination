@@ -68,7 +68,7 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
         analogStart(currentTime.minutes, extraChoice);
         break;
       case "digital":
-        startCountdown(currentTime.minutes);
+        startCountdown(currentTime.minutes, extraChoice);
         break;
       case "visual":
         visualTimerFunc();

@@ -31,12 +31,6 @@ export function startCountdown(minutes: number, extraChoice: number) {
 
   timerCont.append(logoCont, secTimerDisplay, button);
 
-  timerCont.append(logoCont);
-  timerCont.append(secTimerDisplay);
-  timerCont.append(button);
-
-  app.append(timerCont);
-
   const headerText: HTMLElement = document.createElement("p");
   headerText.classList.add("headerText");
   headerText.innerText = "interval";
@@ -59,7 +53,7 @@ export function startCountdown(minutes: number, extraChoice: number) {
       console.log(timer);
       // You can update the UI here with the current time, e.g., display on a label
       const currentTime = timer.getTimeValues();
-
+      secTimerDisplay.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
@@ -83,6 +77,8 @@ export function startCountdown(minutes: number, extraChoice: number) {
       console.log(timer);
       // You can update the UI here with the current time, e.g., display on a label
       const currentTime = timer.getTimeValues();
+      secTimerDisplay.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
@@ -103,11 +99,13 @@ export function startCountdown(minutes: number, extraChoice: number) {
     timer.addEventListener("secondsUpdated", () => {
       console.log("in break version");
       const currentTime = timer.getTimeValues();
+      secTimerDisplay.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+
       console.log(minutes);
       console.log(currentTime.minutes);
       if (currentTime.minutes + 1 == minutes - 5) {
         console.log("-5 bro");
-        breakView(timer, "analog", extraChoice);
+        breakView(timer, "digital", extraChoice);
       }
       // You can update the UI here with the current time, e.g., display on a label
       console.log(

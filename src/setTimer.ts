@@ -175,7 +175,7 @@ function getTimerValue(input: number, alarmType: String, extraChoice) {
     analogStart(input, extraChoice);
   }
   if (alarmType.includes("digital")) {
-    startCountdown(input);
+    startCountdown(input, extraChoice);
   }
   if (alarmType.includes("visual")) {
     visualTimerFunc(input);
