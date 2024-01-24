@@ -1,6 +1,7 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
+import { createMenu } from "./menu";
 // Initialize EasyTimer
 let timer = new Timer();
 
@@ -28,6 +29,11 @@ export function startCountdown(minutes: number, extraChoice: number) {
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
+
+  // Added a clickfuntion on the logo to return to the menu sight
+  svgCont.addEventListener('click', createMenu);
+  document.getElementById("app")?.appendChild(logoCont);
+  logoCont.append(svgCont);
 
   timerCont.append(logoCont, secTimerDisplay, button);
 
