@@ -1,18 +1,17 @@
 import Timer from "easytimer.js";
 let timer = new Timer();
+
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let contentAppended = false;
 const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
-export function visualTimerFunc() {
+export function visualTimerFunc(input:number) {
+  console.log(input)
   if (!contentAppended) {
     app.innerHTML = "";
 
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
-
-    // const navLogoVisual = document.createElement("div");
-    // navLogoVisual.classList.add("navLogoVisual"); // Fix the class name here
 
     const logoCont: HTMLDivElement = document.createElement("div");
     logoCont.classList.add("navLogo");
@@ -59,6 +58,16 @@ export function visualTimerFunc() {
 
     app.append(visualTimerCont);
 
+    timer.start({ countdown: true, startValues: { seconds: 60 } });
+
+    // Use the 'secondsUpdated' event to continuously check if the timer has reached 0
+    // timer.addEventListener('secondsUpdated', function (e) {
+    //   if (e.target.getTimeValues().seconds === 0) {
+    //     timer.stop();
+    //     // Additional actions when the timer reaches 0 seconds
+    //   }
+    // });
+
     function abortTimer() {
       window.location.reload();
     }
@@ -67,4 +76,4 @@ export function visualTimerFunc() {
   }
 }
 
-/* beroende på input tid behöver du skapa logic  */
+visualTimerFunc();

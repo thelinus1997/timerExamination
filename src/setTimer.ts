@@ -128,7 +128,7 @@ function getTimerValue(input: number, alarmType: String) {
     startCountdown(input);
   }
   if (alarmType.includes("visual")) {
-    visualTimerFunc();
+    visualTimerFunc(input);
   }
   if (alarmType.includes("text")) {
     console.log("not finished");
