@@ -1,94 +1,129 @@
 import Timer from "easytimer.js";
+import { breakView } from "./breakview";
+import { alarmView } from "./alarmvy";
 // Initialize EasyTimer
 let timer = new Timer();
+
+const secTimerDisplay: HTMLDivElement = document.createElement("div");
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-let contentAppended = false;
-// const secTimerDisplay: HTMLDivElement = document.createElement("div");
-
-export function startCountdown(
-  minutes //variabel som är 0-2 (valet du gjorde), 0= vanlig timer, 1= interval, 2= breaks
-) {
+export function startCountdown(minutes: number, extraChoice: number) {
   app.innerHTML = "";
-  // Create a new  elements
-  const secTimerDisplay: HTMLDivElement = document.createElement("div");
+
   secTimerDisplay.classList.add("timerBoxDisplay");
 
   const navLogoTimerCont: HTMLDivElement = document.createElement("div");
   navLogoTimerCont.classList.add("navLogoTimer");
-
   const logoCont: HTMLDivElement = document.createElement("div");
   logoCont.classList.add("navLogo");
   const timerCont: HTMLDivElement = document.createElement("div");
   timerCont.classList.add("timerCont");
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
-  button.classList.add("greyButton");
+  button.classList.add("abortButton");
   button.innerText = "ABORT TIMER";
 
-  // Create new elements only if they haven't been appended yet
-  if (!contentAppended) {
-    // Create new elements
+  const svgCont: HTMLImageElement = document.createElement("img");
+  svgCont.setAttribute("type", "img/svg+xml");
+  svgCont.setAttribute("src", "../public/flippedLogo.svg");
+  svgCont.setAttribute("width", "32");
+  svgCont.setAttribute("height", "32");
 
-    secTimerDisplay.classList.add("timerBoxDisplay");
+  timerCont.append(logoCont, secTimerDisplay, button);
 
-    const navLogoTimerCont: HTMLDivElement = document.createElement("div");
-    navLogoTimerCont.classList.add("navLogoTimer");
-    const logoCont: HTMLDivElement = document.createElement("div");
-    logoCont.classList.add("navLogo");
-    const timerCont: HTMLDivElement = document.createElement("div");
-    timerCont.classList.add("timerCont");
-    const button: HTMLButtonElement = document.createElement("button");
-    button.addEventListener("click", () => abortTimer());
-    button.classList.add("abortButton");
-    button.innerText = "ABORT TIMER";
+  timerCont.append(logoCont);
+  timerCont.append(secTimerDisplay);
+  timerCont.append(button);
 
-    const svgCont: HTMLImageElement = document.createElement("img");
-    svgCont.setAttribute("type", "img/svg+xml");
-    svgCont.setAttribute("src", "../public/flippedLogo.svg");
-    svgCont.setAttribute("width", "32");
-    svgCont.setAttribute("height", "32");
+  app.append(timerCont);
 
-    timerCont.append(logoCont, secTimerDisplay, button);
+  const headerText: HTMLElement = document.createElement("p");
+  headerText.classList.add("headerText");
+  headerText.innerText = "interval";
 
-    timerCont.append(logoCont);
-    timerCont.append(secTimerDisplay);
-    timerCont.append(button);
+  logoCont.append(svgCont, headerText);
+  timerCont.append(logoCont);
+  timerCont.append(secTimerDisplay);
+  timerCont.append(button);
 
-    app.append(timerCont);
+  app.append(timerCont);
 
-    const headerText: HTMLElement = document.createElement("p");
-    headerText.classList.add("headerText");
-    headerText.innerText = "interval";
-
-    logoCont.append(svgCont, headerText);
-    timerCont.append(logoCont);
-    timerCont.append(secTimerDisplay);
-    timerCont.append(button);
-
-    app.append(timerCont);
-
-    contentAppended = true;
+  if (extraChoice == 0) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    // Add an event listener for the 'secondsUpdated' event to update the UI
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alert("Timer Finished!");
+      abortTimer();
+      // Optionally perform any actions when the timer completes
     });
   }
 
-  // Update display on every tick
-  timer.addEventListener("secondsUpdated", function (e: any) {
-    const currentTime = timer.getTimeValues();
-    const formattedTime = `${currentTime.minutes}:${currentTime.seconds}`;
-    secTimerDisplay.textContent = formattedTime;
-  });
+  if (extraChoice == 1) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
 
-  // Triggered when countdown is completed
-  timer.addEventListener("targetAchieved", function (e: any) {
-    secTimerDisplay.textContent = "TIMES UP!";
-  });
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      startCountdown(minutes, extraChoice);
+      // Optionally perform any actions when the timer completes
+    });
+  }
+  if (extraChoice == 2) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log("in break version");
+      const currentTime = timer.getTimeValues();
+      console.log(minutes);
+      console.log(currentTime.minutes);
+      if (currentTime.minutes + 1 == minutes - 5) {
+        console.log("-5 bro");
+        breakView(timer, "analog", extraChoice);
+      }
+      // You can update the UI here with the current time, e.g., display on a label
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alarmView();
+      // Optionally perform any actions when the timer completes
+    });
+  }
+  function handleAnimationEnd() {
+    alert("Timer Finished!");
+  }
 }
-
 
 function abortTimer() {
   // Stop the timer and reload the window
