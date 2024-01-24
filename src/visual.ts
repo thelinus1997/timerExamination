@@ -1,13 +1,25 @@
 import Timer from "easytimer.js";
-let timer = new Timer();
+import { breakView } from "./breakview";
+import { alarmView } from "./alarmvy";
 
+// Initialize EasyTimer
+let timer = new Timer();
 const app = document.querySelector<HTMLDivElement>("#app")!;
+let contentAppended = false;
 const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
-export function visualTimerFunc(input:number, minutes) {
-  app.innerHTML = "";
 
-  console.log(input)
+
+function getTimerValue(timerValue: number, alarmType: String) {
+  if (alarmType.includes("visual")) {
+    visualTimerFunc(timerValue);
+  }
+  button.addEventListener("click", () => getTimerValue(minutes, input, choice));
+}
+
+export function visualTimerFunc() {
+ 
+    app.innerHTML = "";
 
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
@@ -16,7 +28,12 @@ export function visualTimerFunc(input:number, minutes) {
     logoCont.classList.add("navLogo");
 
     const digitalTimerVisual = document.createElement("div");
-    digitalTimerVisual.classList.add("digitalTimerVisual");
+    digitalTimerVisual.classList.add('digitalTimerVisual');
+
+    const textArea:HTMLElement = document.createElement("h1");
+    textArea.classList.add("timeTextDisplay")
+    textArea.innerText ="10:00"
+
     const visualTimer = document.createElement("div");
     visualTimer.classList.add("visualTimer");
 
@@ -51,47 +68,16 @@ export function visualTimerFunc(input:number, minutes) {
     svgCont.style.fill= "white";
 
     logoCont.appendChild(svgCont);
-    visualTimerCont.append(logoCont);
-    visualTimerCont.append(digitalTimerVisual);
-    visualTimerCont.append(visualTimer);
     frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
-    visualTimer.append(frame);
-    visualTimerCont.append(button);
+    
+    visualTimerCont.append(svgCont, frame, button, textArea);
+
 
     app.append(visualTimerCont);
 
-    timer.start({ countdown: true, startValues: { seconds: 60 } });
+    function abortTimer() {
+      window.location.reload();
+    }
 
-    const animationDuration = input + "s";
-    document.styleSheets[0].insertRule(`@keyframes sandDown { 0% { background-image: linear-gradient(45deg, $sand 100%, transparent 0%); } ... 100% { background-image: linear-gradient(45deg, $sand 0%, transparent 0%); } }`, 0);
-    document.styleSheets[0].insertRule(`@keyframes sandUp { 0% { background-image: linear-gradient(45deg, transparent 100%, $sand 0%); } ... 100% { background-image: linear-gradient(45deg, transparent 0%, $sand 0%); } }`, 0);
-    timer.addEventListener('secondsUpdated', function (e) {
-      if (timer.getTimeValues().seconds === 0) {
-        timer.stop();
-      }
-    });
-    timer.start({
-      countdown: true,
-      startValues: { minutes: minutes },
-      target: { seconds: 0 },
-    });
-    timer.addEventListener("secondsUpdated", function (e: any) {
-      const currentTime = timer.getTimeValues();
-      const formattedTime = `${currentTime.minutes}:${currentTime.seconds}`;
-      digitalTimerVisual.textContent = formattedTime;
-    });
-  
-    // Triggered when countdown is completed
-    timer.addEventListener("targetAchieved", function (e: any) {
-      digitalTimerVisual.textContent = "TIMES UP!";
-    });
-  
-      function abortTimer() {
-        window.location.reload();
-      }
-  
   }
 
- 
-
-visualTimerFunc(60);
