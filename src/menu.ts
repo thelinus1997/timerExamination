@@ -10,11 +10,6 @@ export function createMenu() {
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
 
-  // //Added a clickfuntion on the logo to return to the menu sight
-  // svgCont.addEventListener('click', createMenu);
-  // document.getElementById("app")?.appendChild(logoCont);
-  // logoCont.append(svgCont);
-
   //append logo container to #app
   document.getElementById("app")?.appendChild(logoCont);
 
