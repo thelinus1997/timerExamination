@@ -3,6 +3,7 @@ import { alarmView } from "./alarmvy";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 import { event } from "jquery";
+import { createMenu } from "./menu";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 let minutes = 10;
@@ -73,8 +74,15 @@ function buildPage(input: String) {
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
-
   logoCont.appendChild(svgCont);
+
+  // Added a clickfuntion on the logo to return to the menu sight
+  svgCont.addEventListener('click', createMenu);
+  document.getElementById("app")?.appendChild(logoCont);
+  logoCont.append(svgCont);
+
+
+
 
   const timeContainer: HTMLDivElement = document.createElement("div");
   timeContainer.classList.add("timePicker");
@@ -96,8 +104,6 @@ function buildPage(input: String) {
   intervalContainer.classList.add("choiceSubContainer");
   const breakContainer: HTMLDivElement = document.createElement("div");
   breakContainer.classList.add("choiceSubContainer");
-
-
 
   const checkBoxOne: HTMLInputElement = document.createElement("input");
   checkBoxOne.type = "checkbox";

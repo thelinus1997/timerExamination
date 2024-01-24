@@ -28,7 +28,7 @@ console.log(app);
 
 //visualTimerFunc();
 // const timer = new Timer();
-// createMenu();
+createMenu();
 // startLoading();
 // startCountdown();
 // startLoading();
@@ -37,4 +37,4 @@ console.log(app);
 
 // //startLoading();
 // startCountdown();
-startLoading()
+// startLoading()

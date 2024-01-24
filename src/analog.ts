@@ -47,14 +47,12 @@ export function analogStart(minutes: number, extraChoice) {
   const minuteHandRotation = (360 / 60) * minutes;
 
   // Set up the rotation animation for the second hand
-  secondHand.style.animation = `rotateClockwise ${
-    minutes * 60
-  }s linear infinite`;
+  secondHand.style.animation = `rotateClockwise ${minutes * 60
+    }s linear infinite`;
 
   // Set up the rotation animation for the minute hand
-  minuteHand.style.animation = `rotateMinuteHand ${
-    minutes * 60
-  }s linear infinite`;
+  minuteHand.style.animation = `rotateMinuteHand ${minutes * 60
+    }s linear infinite`;
 
   // Set up the keyframes for the rotation animations
   const styleSheet = document.styleSheets[0];
