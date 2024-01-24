@@ -1,6 +1,8 @@
 import Timer from "easytimer.js";
 import { setTimer } from "./setTimer";
+import { visualTimerFunc } from "./visual";
 import { analogStart } from "./analog";
+import { startCountdown } from "./digital";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
 let breakTimer = new Timer();
@@ -63,13 +65,13 @@ export function breakView(inputTimer: Timer, typeOfTimer: String) {
 
     switch (typeOfTimer) {
       case "analog":
-        analogStart(currentTime.minutes);
+        analogStart(currentTime.minutes, 0);
         break;
       case "digital":
-        // Check for string at index 1
+        startCountdown(currentTime.minutes);
         break;
       case "visual":
-        // Check for string at index 2
+        visualTimerFunc();
         break;
       case "text":
         // Check for string at index 3

@@ -9,8 +9,8 @@ export function visualTimerFunc() {
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
 
-    const navLogoVisual = document.createElement("div");
-    navLogoVisual.classList.add("navLogoVisual"); // Fix the class name here
+    // const navLogoVisual = document.createElement("div");
+    // navLogoVisual.classList.add("navLogoVisual"); // Fix the class name here
 
     const logoCont: HTMLDivElement = document.createElement("div");
     logoCont.classList.add("navLogo");
@@ -46,6 +46,7 @@ export function visualTimerFunc() {
     svgCont.setAttribute("src", "./public/flippedLogo.svg");
     svgCont.setAttribute("width", "32");
     svgCont.setAttribute("height", "32");
+    svgCont.style.fill= "white";
 
     logoCont.appendChild(svgCont);
     visualTimerCont.append(logoCont);
@@ -65,5 +66,3 @@ export function visualTimerFunc() {
 }
 
 /* beroende på input tid behöver du skapa logic  */
-
-// Start the countdown
