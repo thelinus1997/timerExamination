@@ -164,10 +164,10 @@ function getTimerValue(input: number, alarmType: String) {
     analogStart(input, 2);
   }
   if (alarmType.includes("digital")) {
-    startCountdown(input);
+    startCountdown(input, choice);
   }
   if (alarmType.includes("visual")) {
-    visualTimerFunc();
+    visualTimerFunc(input, choice);
   }
   if (alarmType.includes("text")) {
     console.log("not finished");
