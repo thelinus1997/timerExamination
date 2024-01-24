@@ -1,5 +1,5 @@
 import { analogStart } from "./analog";
-import { alarmView } from "./alarmvy";
+import { alarmView } from "./timesupvy";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 

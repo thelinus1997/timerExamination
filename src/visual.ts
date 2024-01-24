@@ -2,13 +2,12 @@ import Timer from "easytimer.js";
 let timer = new Timer();
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-let contentAppended = false;
 const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
-export function visualTimerFunc(input:number) {
+export function visualTimerFunc(input:number, minutes) {
+  app.innerHTML = "";
+
   console.log(input)
-  if (!contentAppended) {
-    app.innerHTML = "";
 
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
@@ -16,6 +15,8 @@ export function visualTimerFunc(input:number) {
     const logoCont: HTMLDivElement = document.createElement("div");
     logoCont.classList.add("navLogo");
 
+    const digitalTimerVisual = document.createElement("div");
+    digitalTimerVisual.classList.add("digitalTimerVisual");
     const visualTimer = document.createElement("div");
     visualTimer.classList.add("visualTimer");
 
@@ -51,6 +52,7 @@ export function visualTimerFunc(input:number) {
 
     logoCont.appendChild(svgCont);
     visualTimerCont.append(logoCont);
+    visualTimerCont.append(digitalTimerVisual);
     visualTimerCont.append(visualTimer);
     frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
     visualTimer.append(frame);
@@ -60,20 +62,36 @@ export function visualTimerFunc(input:number) {
 
     timer.start({ countdown: true, startValues: { seconds: 60 } });
 
-    // Use the 'secondsUpdated' event to continuously check if the timer has reached 0
-    // timer.addEventListener('secondsUpdated', function (e) {
-    //   if (e.target.getTimeValues().seconds === 0) {
-    //     timer.stop();
-    //     // Additional actions when the timer reaches 0 seconds
-    //   }
-    // });
-
-    function abortTimer() {
-      window.location.reload();
-    }
-
-    contentAppended = true; // Set to true after appending content
+    const animationDuration = input + "s";
+    document.styleSheets[0].insertRule(`@keyframes sandDown { 0% { background-image: linear-gradient(45deg, $sand 100%, transparent 0%); } ... 100% { background-image: linear-gradient(45deg, $sand 0%, transparent 0%); } }`, 0);
+    document.styleSheets[0].insertRule(`@keyframes sandUp { 0% { background-image: linear-gradient(45deg, transparent 100%, $sand 0%); } ... 100% { background-image: linear-gradient(45deg, transparent 0%, $sand 0%); } }`, 0);
+    timer.addEventListener('secondsUpdated', function (e) {
+      if (timer.getTimeValues().seconds === 0) {
+        timer.stop();
+      }
+    });
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 },
+    });
+    timer.addEventListener("secondsUpdated", function (e: any) {
+      const currentTime = timer.getTimeValues();
+      const formattedTime = `${currentTime.minutes}:${currentTime.seconds}`;
+      digitalTimerVisual.textContent = formattedTime;
+    });
+  
+    // Triggered when countdown is completed
+    timer.addEventListener("targetAchieved", function (e: any) {
+      digitalTimerVisual.textContent = "TIMES UP!";
+    });
+  
+      function abortTimer() {
+        window.location.reload();
+      }
+  
   }
-}
 
-visualTimerFunc();
+ 
+
+visualTimerFunc(60);

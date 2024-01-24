@@ -1,7 +1,7 @@
 import Timer from "easytimer.js";
 // Initialize EasyTimer
 let timer = new Timer();
-
+const app = document.querySelector<HTMLDivElement>("#app")!;
 
 let contentAppended = false;
 // const secTimerDisplay: HTMLDivElement = document.createElement("div");
@@ -89,8 +89,6 @@ export function startCountdown(
   });
 }
 
-// Call the startCountdown function
-//
 
 function abortTimer() {
   // Stop the timer and reload the window
