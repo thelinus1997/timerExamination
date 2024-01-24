@@ -3,6 +3,7 @@ import "./scss/_digitalTimer.scss";
 import { startLoading } from "./loadingScreen";
 import "./analog";
 import "./scss/_analog.scss";
+import "./scss/_visualTimer.scss"
 import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
