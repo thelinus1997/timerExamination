@@ -1,0 +1,77 @@
+@import "fonts";
+@import "colors";
+@import "mixins";
+
+.alarmMainCont {
+  @include basicFlexBox;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.newTimerButton {
+  display: inline-flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  opacity: 0.6;
+  position: absolute;
+  bottom: 10%;
+  color: $whiteFont;
+}
+.breatheText {
+  color: $whiteFont;
+  position: absolute;
+  bottom: 35%;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.6px;
+  left: 50%;
+  transform: translate(-47.5%);
+  width: 315px;
+  height: 47px;
+}
+#ellipseOne,
+#ellipseTwo,
+#ellipseThree,
+#ellipseFour {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+#ellipseOne {
+  width: 506px;
+  height: 506px;
+  flex-shrink: 0;
+  background-color: $gradientFour;
+  #ellipseTwo {
+    width: 344px;
+    height: 344px;
+    flex-shrink: 0;
+    background-color: $gradientThree;
+    #ellipseThree {
+      width: 234px;
+      height: 234px;
+      flex-shrink: 0;
+      background-color: $gradientTwo;
+      #ellipseFour {
+        width: 152px;
+        height: 152px;
+        flex-shrink: 0;
+        background-color: $gradientOne;
+        img {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

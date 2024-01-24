@@ -1,22 +1,18 @@
-import "./style.css";
+import "./scss/style.scss";
+import "./scss/_digitalTimer.scss";
+import { startLoading } from "./loadingScreen";
+import "./analog";
+import "./scss/_analog.scss";
+import "./scss/_visualTimer.scss"
+import { setTimer } from "./setTimer";
+import { startCountdown } from "./digital";
+import { visualTimerFunc } from "./visual";
+import { Timer } from "easytimer.js";
+import { createMenu } from "./menu";
+import { analogStart } from "./analog";
+import { alarmView } from "./alarmvy";
+import { breakView } from "./breakview";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-
-interface Todo {
-  id: number;
-  label: string;
-  description?: string;
-  done: boolean;
-}
-
-const todos: Todo[] = [
-  { id: 0, label: "buy groceries", done: true },
-  { id: 1, label: "buy eggs", done: false },
-  { id: 2, label: "sleep", done: true },
-];
-
-todos.forEach((todo) => {
-  const div = document.createElement("div");
-  div.innerHTML = `label: ${todo.label} - done: ${todo.done}`;
-  app.append(div);
-});
+console.log(app);
+startLoading();

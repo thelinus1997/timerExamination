@@ -1,0 +1,91 @@
+@import "fonts";
+@import "colors";
+
+@mixin basicFlexBox() {
+  width: 430px;
+  height: 932px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@mixin buttonStyle($color) {
+  display: flex;
+  width: 279px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1.5px solid #222;
+  background-color: $color;
+  margin: auto auto 3rem auto;
+  @include buttonText();
+}
+@mixin buttonText() {
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+@mixin choiceText() {
+  color: #222;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
+}
+@mixin minuteText() {
+  color: #222;
+  text-align: center;
+  font-family: "PT Sans", sans-serif;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 8px;
+}
+@mixin minuteSubText() {
+  color: rgba(34, 34, 34, 0.6);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.6px;
+}
+
+@mixin vhvw(){
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin navLogoMixin {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: flex-start;
+  gap: 2px;
+  flex-shrink: 0;
+  margin: 1rem 0 0 1rem;
+}
+//hourglass
+@mixin pseudo ($position: absolute, $display: block, $content: ''){
+	position: $position;
+	display: $display;
+	content: '';}
+
+@mixin size($height, $width){
+	height: $height;
+	width: $width;
+}
+
+@mixin cross($property, $val){
+	-webkit-#{$property}: $val;
+	-moz-#{$property}: $val;
+	-ms-#{$property}: $val;
+	#{$property}: $val;
+}
