@@ -78,10 +78,9 @@ function buildPage(input: String) {
   logoCont.appendChild(svgCont);
 
   // Added a clickfuntion on the logo to return to the menu sight
-  svgCont.addEventListener('click', createMenu);
+  svgCont.addEventListener("click", createMenu);
   document.getElementById("app")?.appendChild(logoCont);
   logoCont.append(svgCont);
-
 
   const timeContainer: HTMLDivElement = document.createElement("div");
   timeContainer.classList.add("timePicker");
@@ -117,24 +116,25 @@ function buildPage(input: String) {
   // const checkBoxOne: HTMLInputElement = document.createElement('input');
   // checkBoxOne.type = "checkbox";
 
-
   //function to check if box1 is selected
-  checkBoxOne.addEventListener('change', () => {
+  checkBoxOne.addEventListener("change", () => {
     if (checkBoxOne.checked) {
-      console.log('CheckboxOne is selected');
+      console.log("CheckboxOne is selected");
     } else {
-      console.log('CheckboxOne is not selected');
-    }
-
-  });
-
-  checkBoxTwo.addEventListener("change", function (this: HTMLInputElement, event: Event): void {
-    if (this.checked) {
-      console.log('Checkboxtwo is selected');
-    } else {
-      console.log('Checkboxtwo is not selected');
+      console.log("CheckboxOne is not selected");
     }
   });
+
+  checkBoxTwo.addEventListener(
+    "change",
+    function (this: HTMLInputElement, event: Event): void {
+      if (this.checked) {
+        console.log("Checkboxtwo is selected");
+      } else {
+        console.log("Checkboxtwo is not selected");
+      }
+    }
+  );
 
   // checkBoxTwo.addEventListener('Change'), (event: Event) => {
   //   if ((event.target as HTMLInputElement).checked) {
@@ -143,7 +143,6 @@ function buildPage(input: String) {
   //     console.log('Checkboxtwo is not selected');
   //   }
   // }
-
 
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => getTimerValue(minutes, input));
@@ -156,19 +155,18 @@ function buildPage(input: String) {
   timeContainer.append(arrowLeft, minuteContainer, arrowRight);
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
-
 }
 function getTimerValue(input: number, alarmType: String) {
   console.log(input, alarmType);
   if (alarmType.includes("analog")) {
     //skicka med input minuter + valet du gjorde. (0 = inget val, 1 = interval, 2 = 5min break)
-    analogStart(input, 2);
+    analogStart(input, choice);
   }
   if (alarmType.includes("digital")) {
-    startCountdown(input);
+    startCountdown(input, choice);
   }
   if (alarmType.includes("visual")) {
-    visualTimerFunc();
+    visualTimerFunc(input, choice);
   }
   if (alarmType.includes("text")) {
     console.log("not finished");

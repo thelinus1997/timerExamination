@@ -10,14 +10,14 @@ const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
 
 
-function getTimerValue(timerValue: number, alarmType: String) {
+/* function getTimerValue(timerValue: number, alarmType: String) {
   if (alarmType.includes("visual")) {
     visualTimerFunc(timerValue);
   }
   button.addEventListener("click", () => getTimerValue(minutes, input, choice));
-}
+} */
 
-export function visualTimerFunc() {
+export function visualTimerFunc(minutes: number, extraChoice: number) {
  
     app.innerHTML = "";
 
@@ -27,12 +27,13 @@ export function visualTimerFunc() {
     const logoCont: HTMLDivElement = document.createElement("div");
     logoCont.classList.add("navLogo");
 
-    const digitalTimerVisual = document.createElement("div");
-    digitalTimerVisual.classList.add('digitalTimerVisual');
+    const headerText: HTMLElement = document.createElement("p");
+    headerText.classList.add("headerText");
+    headerText.innerText = "interval";
 
     const textArea:HTMLElement = document.createElement("h1");
     textArea.classList.add("timeTextDisplay")
-    textArea.innerText ="10:00"
+    
 
     const visualTimer = document.createElement("div");
     visualTimer.classList.add("visualTimer");
@@ -70,14 +71,92 @@ export function visualTimerFunc() {
     logoCont.appendChild(svgCont);
     frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
     
-    visualTimerCont.append(svgCont, frame, button, textArea);
+    visualTimerCont.append(svgCont, headerText, frame, button, textArea);
 
 
     app.append(visualTimerCont);
+
+    
+  if (extraChoice == 0) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    // Add an event listener for the 'secondsUpdated' event to update the UI
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alert("Timer Finished!");
+      alarmView();
+      // Optionally perform any actions when the timer completes
+    });
+  }
+
+  if (extraChoice == 1) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      visualTimerFunc(minutes, extraChoice);
+      // Optionally perform any actions when the timer completes
+    });
+  }
+  if (extraChoice == 2) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log("in break version");
+      const currentTime = timer.getTimeValues();
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+
+      console.log(minutes);
+      console.log(currentTime.minutes);
+      if (currentTime.minutes + 1 == minutes - 5) {
+        console.log("-5 bro");
+        breakView(timer, "visual", extraChoice);
+      }
+      // You can update the UI here with the current time, e.g., display on a label
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alarmView();
+      // Optionally perform any actions when the timer completes
+    });
+  }
+}
 
     function abortTimer() {
       window.location.reload();
     }
 
-  }
-
+  
