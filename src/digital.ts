@@ -125,9 +125,6 @@ export function startCountdown(minutes: number, extraChoice: number) {
   }
 }
 
-// Call the startCountdown function
-//
-
 function abortTimer() {
   // Stop the timer and reload the window
   timer.stop();

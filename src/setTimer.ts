@@ -1,5 +1,5 @@
 import { analogStart } from "./analog";
-import { alarmView } from "./alarmvy";
+import { alarmView } from "./timesupvy";
 import { startCountdown } from "./digital";
 import { visualTimerFunc } from "./visual";
 import { event } from "jquery";
@@ -178,7 +178,7 @@ function getTimerValue(input: number, alarmType: String, extraChoice) {
     startCountdown(input);
   }
   if (alarmType.includes("visual")) {
-    visualTimerFunc();
+    visualTimerFunc(input);
   }
   if (alarmType.includes("text")) {
     console.log("not finished");
