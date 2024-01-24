@@ -15,13 +15,13 @@
   }
 
   .visualTimerCont {
-    background-color: $background-black;
+    background-color: $background-white;
     @include basicFlexBox;
   }
 
   .navLogoVisual {
     fill: white;
-    @include navLogo;
+    @include navLogoMixin;
     @include basicFlexBox;
   }
 
@@ -29,6 +29,7 @@
     position: relative;
     top: 15%;
     margin: auto;
+    left: -10%;
     @include size(500px,500px);
     &::before{
       @include pseudo;
