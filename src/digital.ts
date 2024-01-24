@@ -62,7 +62,7 @@ export function startCountdown(minutes: number, extraChoice: number) {
     // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       alert("Timer Finished!");
-      abortTimer();
+      alarmView();
       // Optionally perform any actions when the timer completes
     });
   }
