@@ -1,13 +1,25 @@
 import Timer from "easytimer.js";
-let timer = new Timer();
+import { breakView } from "./breakview";
+import { alarmView } from "./alarmvy";
 
+// Initialize EasyTimer
+let timer = new Timer();
 const app = document.querySelector<HTMLDivElement>("#app")!;
+let contentAppended = false;
 const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
-export function visualTimerFunc(input:number, minutes) {
-  app.innerHTML = "";
 
-  console.log(input)
+
+/* function getTimerValue(timerValue: number, alarmType: String) {
+  if (alarmType.includes("visual")) {
+    visualTimerFunc(timerValue);
+  }
+  button.addEventListener("click", () => getTimerValue(minutes, input, choice));
+} */
+
+export function visualTimerFunc(minutes: number, extraChoice: number) {
+ 
+    app.innerHTML = "";
 
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
@@ -15,8 +27,14 @@ export function visualTimerFunc(input:number, minutes) {
     const logoCont: HTMLDivElement = document.createElement("div");
     logoCont.classList.add("navLogo");
 
-    const digitalTimerVisual = document.createElement("div");
-    digitalTimerVisual.classList.add("digitalTimerVisual");
+    const headerText: HTMLElement = document.createElement("p");
+    headerText.classList.add("headerText");
+    headerText.innerText = "interval";
+
+    const textArea:HTMLElement = document.createElement("h1");
+    textArea.classList.add("timeTextDisplay")
+    
+
     const visualTimer = document.createElement("div");
     visualTimer.classList.add("visualTimer");
 
@@ -51,47 +69,94 @@ export function visualTimerFunc(input:number, minutes) {
     svgCont.style.fill= "white";
 
     logoCont.appendChild(svgCont);
-    visualTimerCont.append(logoCont);
-    visualTimerCont.append(digitalTimerVisual);
-    visualTimerCont.append(visualTimer);
     frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
-    visualTimer.append(frame);
-    visualTimerCont.append(button);
+    
+    visualTimerCont.append(svgCont, headerText, frame, button, textArea);
+
 
     app.append(visualTimerCont);
 
-    timer.start({ countdown: true, startValues: { seconds: 60 } });
-
-    const animationDuration = input + "s";
-    document.styleSheets[0].insertRule(`@keyframes sandDown { 0% { background-image: linear-gradient(45deg, $sand 100%, transparent 0%); } ... 100% { background-image: linear-gradient(45deg, $sand 0%, transparent 0%); } }`, 0);
-    document.styleSheets[0].insertRule(`@keyframes sandUp { 0% { background-image: linear-gradient(45deg, transparent 100%, $sand 0%); } ... 100% { background-image: linear-gradient(45deg, transparent 0%, $sand 0%); } }`, 0);
-    timer.addEventListener('secondsUpdated', function (e) {
-      if (timer.getTimeValues().seconds === 0) {
-        timer.stop();
-      }
-    });
+    
+  if (extraChoice == 0) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
     });
-    timer.addEventListener("secondsUpdated", function (e: any) {
+    // Add an event listener for the 'secondsUpdated' event to update the UI
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
       const currentTime = timer.getTimeValues();
-      const formattedTime = `${currentTime.minutes}:${currentTime.seconds}`;
-      digitalTimerVisual.textContent = formattedTime;
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
     });
-  
-    // Triggered when countdown is completed
-    timer.addEventListener("targetAchieved", function (e: any) {
-      digitalTimerVisual.textContent = "TIMES UP!";
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alert("Timer Finished!");
+      alarmView();
+      // Optionally perform any actions when the timer completes
     });
-  
-      function abortTimer() {
-        window.location.reload();
-      }
-  
   }
 
- 
+  if (extraChoice == 1) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log(timer);
+      // You can update the UI here with the current time, e.g., display on a label
+      const currentTime = timer.getTimeValues();
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
 
-visualTimerFunc(60);
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      visualTimerFunc(minutes, extraChoice);
+      // Optionally perform any actions when the timer completes
+    });
+  }
+  if (extraChoice == 2) {
+    timer.start({
+      countdown: true,
+      startValues: { minutes: minutes },
+      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    });
+    timer.addEventListener("secondsUpdated", () => {
+      console.log("in break version");
+      const currentTime = timer.getTimeValues();
+      textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
+
+      console.log(minutes);
+      console.log(currentTime.minutes);
+      if (currentTime.minutes + 1 == minutes - 5) {
+        console.log("-5 bro");
+        breakView(timer, "visual", extraChoice);
+      }
+      // You can update the UI here with the current time, e.g., display on a label
+      console.log(
+        `Current time: ${currentTime.minutes}:${currentTime.seconds}`
+      );
+    });
+    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    timer.addEventListener("targetAchieved", () => {
+      alarmView();
+      // Optionally perform any actions when the timer completes
+    });
+  }
+}
+
+    function abortTimer() {
+      window.location.reload();
+    }
+
+  

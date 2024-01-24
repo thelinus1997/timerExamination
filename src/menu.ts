@@ -1,5 +1,7 @@
 import { setTimer } from "./setTimer";
+const app = document.querySelector<HTMLDivElement>("#app")!;
 export function createMenu() {
+  app.innerHTML = "";
   const logoCont: HTMLDivElement = document.createElement("div");
   logoCont.classList.add("navigationLogo");
   const svgCont: HTMLImageElement = document.createElement("img");
