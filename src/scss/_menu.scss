@@ -3,7 +3,6 @@
 @import "mixins";
 
 .navigationLogo {
-  background-color: $whiteFont;
   top: 0.6rem;
   left: 0.6rem;
   margin-bottom: 5rem;
@@ -17,6 +16,15 @@
   li {
     padding: 1rem;
     align-items: center;
+    color: #fff;
+    text-align: center;
+    font-family: "PT Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
 
     &:hover {
       opacity: 0.7;
