@@ -42,7 +42,16 @@
   transform: translate(-50%, -100%) rotate(0deg); // Initial rotation
   animation: rotateClockwise 3600s linear infinite; // Rotate every 3600 seconds (1 hour)
 }
-
+.tempBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #000;
+  z-index: 1000;
+}
 // @keyframes rotateClockwise {
 //   to {
 //     transform: translate(-50%, -100%) rotate(360deg);

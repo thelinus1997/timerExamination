@@ -18,3 +18,18 @@ console.log(app);
 startLoading();
 
 
+<<<<<<< HEAD
+=======
+//visualTimerFunc();
+// const timer = new Timer();
+// createMenu();
+// startLoading();
+// startCountdown();
+// startLoading();
+// startCountdown();
+//breakView(); //startCountdown();
+
+// //startLoading();
+// startCountdown();
+startLoading();
+>>>>>>> 174b382b53dd94fe3c42c55004b634008e33660f
