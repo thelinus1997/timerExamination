@@ -118,22 +118,35 @@ function buildPage(input: String) {
   //function to check if box1 is selected
   checkBoxOne.addEventListener("change", () => {
     if (checkBoxOne.checked) {
-      console.log("CheckboxOne is selected");
+      if (checkBoxTwo.checked) {
+        checkBoxTwo.checked = false;
+        choice = 1;
+        console.log(choice);
+      } else {
+        choice = 1;
+        console.log(choice);
+      }
     } else {
-      console.log("CheckboxOne is not selected");
+      choice = 0;
+      console.log(choice);
     }
   });
 
-  checkBoxTwo.addEventListener(
-    "change",
-    function (this: HTMLInputElement, event: Event): void {
-      if (this.checked) {
-        console.log("Checkboxtwo is selected");
+  checkBoxTwo.addEventListener("change", () => {
+    if (checkBoxTwo.checked) {
+      if (checkBoxOne.checked) {
+        checkBoxOne.checked = false;
+        choice = 2;
+        console.log(choice);
       } else {
-        console.log("Checkboxtwo is not selected");
+        choice = 2;
+        console.log(choice);
       }
+    } else {
+      choice = 0;
+      console.log(choice);
     }
-  );
+  });
 
   // checkBoxTwo.addEventListener('Change'), (event: Event) => {
   //   if ((event.target as HTMLInputElement).checked) {
@@ -165,6 +178,7 @@ function getTimerValue(input: number, alarmType: String) {
     startCountdown(input, choice);
   }
   if (alarmType.includes("visual")) {
+    console.log(choice);
     visualTimerFunc(input, choice);
   }
   if (alarmType.includes("text")) {

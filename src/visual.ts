@@ -5,78 +5,63 @@ import { alarmView } from "./alarmvy";
 // Initialize EasyTimer
 let timer = new Timer();
 const app = document.querySelector<HTMLDivElement>("#app")!;
-let contentAppended = false;
-const myVarVal = "60s";
-document.documentElement.style.setProperty("oneMinute", myVarVal);
-
-
-/* function getTimerValue(timerValue: number, alarmType: String) {
-  if (alarmType.includes("visual")) {
-    visualTimerFunc(timerValue);
-  }
-  button.addEventListener("click", () => getTimerValue(minutes, input, choice));
-} */
 
 export function visualTimerFunc(minutes: number, extraChoice: number) {
- 
-    app.innerHTML = "";
+  app.innerHTML = "";
+  console.log(extraChoice);
+  const visualTimerCont = document.createElement("div");
+  visualTimerCont.classList.add("visualTimerCont");
 
-    const visualTimerCont = document.createElement("div");
-    visualTimerCont.classList.add("visualTimerCont");
+  const logoCont: HTMLDivElement = document.createElement("div");
+  logoCont.classList.add("navLogo");
 
-    const logoCont: HTMLDivElement = document.createElement("div");
-    logoCont.classList.add("navLogo");
+  const headerText: HTMLElement = document.createElement("p");
+  headerText.classList.add("headerText");
+  headerText.innerText = "interval";
 
-    const headerText: HTMLElement = document.createElement("p");
-    headerText.classList.add("headerText");
-    headerText.innerText = "interval";
+  const textArea: HTMLElement = document.createElement("h1");
+  textArea.classList.add("timeTextDisplay");
 
-    const textArea:HTMLElement = document.createElement("h1");
-    textArea.classList.add("timeTextDisplay")
-    
+  const visualTimer = document.createElement("div");
+  visualTimer.classList.add("visualTimer");
 
-    const visualTimer = document.createElement("div");
-    visualTimer.classList.add("visualTimer");
+  const glassUpper = document.createElement("div");
+  glassUpper.classList.add("glassUpper");
 
-    const glassUpper = document.createElement("div");
-    glassUpper.classList.add("glassUpper");
+  const sandUpper = document.createElement("div");
+  sandUpper.classList.add("sandUpper");
 
-    const sandUpper = document.createElement("div");
-    sandUpper.classList.add("sandUpper");
+  const fillet = document.createElement("div");
+  fillet.classList.add("fillet");
 
-    const fillet = document.createElement("div");
-    fillet.classList.add("fillet");
+  const glassBottom = document.createElement("div");
+  glassBottom.classList.add("glassbottom");
 
-    const glassBottom = document.createElement("div");
-    glassBottom.classList.add("glassbottom");
+  const sandBottom = document.createElement("div");
+  sandBottom.classList.add("sandBottom");
 
-    const sandBottom = document.createElement("div");
-    sandBottom.classList.add("sandBottom");
+  const frame = document.createElement("div");
+  frame.classList.add("frame");
 
-    const frame = document.createElement("div");
-    frame.classList.add("frame");
+  const button: HTMLButtonElement = document.createElement("button");
+  button.addEventListener("click", () => abortTimer());
+  button.classList.add("greyButton");
+  button.innerText = "ABORT TIMER";
 
-    const button: HTMLButtonElement = document.createElement("button");
-    button.addEventListener("click", () => abortTimer());
-    button.classList.add("greyButton");
-    button.innerText = "ABORT TIMER";
+  const svgCont: HTMLImageElement = document.createElement("img");
+  svgCont.setAttribute("type", "img/svg+xml");
+  svgCont.setAttribute("src", "./public/flippedLogo.svg");
+  svgCont.setAttribute("width", "32");
+  svgCont.setAttribute("height", "32");
+  svgCont.style.fill = "white";
 
-    const svgCont: HTMLImageElement = document.createElement("img");
-    svgCont.setAttribute("type", "img/svg+xml");
-    svgCont.setAttribute("src", "./public/flippedLogo.svg");
-    svgCont.setAttribute("width", "32");
-    svgCont.setAttribute("height", "32");
-    svgCont.style.fill= "white";
+  logoCont.appendChild(svgCont);
+  frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
 
-    logoCont.appendChild(svgCont);
-    frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
-    
-    visualTimerCont.append(svgCont, headerText, frame, button, textArea);
+  visualTimerCont.append(svgCont, headerText, frame, button, textArea);
 
+  app.append(visualTimerCont);
 
-    app.append(visualTimerCont);
-
-    
   if (extraChoice == 0) {
     timer.start({
       countdown: true,
@@ -96,13 +81,13 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
 
     // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
-      alert("Timer Finished!");
       alarmView();
       // Optionally perform any actions when the timer completes
     });
   }
 
   if (extraChoice == 1) {
+    console.log("extraChoice = 1");
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
@@ -155,8 +140,6 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
   }
 }
 
-    function abortTimer() {
-      window.location.reload();
-    }
-
-  
+function abortTimer() {
+  window.location.reload();
+}
