@@ -37,7 +37,8 @@ export function createMenu() {
   appElement?.appendChild(menuContainer);
 }
 
-function handleChoice(input: HTMLElement) {
+function handleChoice(input: HTMLElement| null | undefined) {
+  if (input?.textContent) {
   console.log(input.textContent);
   if (input.textContent.includes("ANALOG")) {
     setTimer(0);
@@ -54,4 +55,5 @@ function handleChoice(input: HTMLElement) {
   if (input.textContent.includes("CIRKLES")) {
     setTimer(4);
   }
+}
 }

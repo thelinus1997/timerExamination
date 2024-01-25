@@ -10,16 +10,10 @@ const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
 
 
-/* function getTimerValue(timerValue: number, alarmType: String) {
-  if (alarmType.includes("visual")) {
-    visualTimerFunc(timerValue);
-  }
-  button.addEventListener("click", () => getTimerValue(minutes, input, choice));
-} */
-
 export function visualTimerFunc(minutes: number, extraChoice: number) {
  
     app.innerHTML = "";
+    
 
     const visualTimerCont = document.createElement("div");
     visualTimerCont.classList.add("visualTimerCont");
@@ -56,6 +50,16 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
     const frame = document.createElement("div");
     frame.classList.add("frame");
 
+    const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
+    const sandBottomRotate = document.querySelector(".sandBottom") as HTMLElement;
+    function hourglassFilled() {
+      // Add the "filled" class to trigger the rotation animation
+      sandUpper.classList.add("filled");
+      sandBottom.classList.add("filled");
+
+      console.log(hourglassFilled);
+    }
+    
     const button: HTMLButtonElement = document.createElement("button");
     button.addEventListener("click", () => abortTimer());
     button.classList.add("greyButton");
@@ -150,9 +154,11 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
     // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
+      
     });
+    
   }
+  
 }
 
     function abortTimer() {
