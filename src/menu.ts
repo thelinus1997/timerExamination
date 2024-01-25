@@ -1,5 +1,6 @@
 import { setTimer } from "./setTimer";
 const app = document.querySelector<HTMLDivElement>("#app")!;
+
 export function createMenu() {
   app.innerHTML = "";
   const logoCont: HTMLDivElement = document.createElement("div");
@@ -9,6 +10,9 @@ export function createMenu() {
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
+  document.getElementById("app")?.appendChild(logoCont);
+  logoCont.append(svgCont);
+  
 
   //append logo container to #app
   document.getElementById("app")?.appendChild(logoCont);
@@ -31,10 +35,13 @@ export function createMenu() {
     node.appendChild(textnode);
     // document.getElementById('app')?.appendChild(node);
     menuContainer.appendChild(node);
+
+   
   });
 
   const appElement = document.getElementById("app");
   appElement?.appendChild(menuContainer);
+  menuContainer.append(svgCont);
 }
 
 function handleChoice(input: HTMLElement| null | undefined) {
@@ -57,3 +64,4 @@ function handleChoice(input: HTMLElement| null | undefined) {
   }
 }
 }
+
