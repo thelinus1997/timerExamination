@@ -38,7 +38,6 @@ export function createMenu() {
 
   const appElement = document.getElementById("app");
   appElement?.appendChild(menuContainer);
-  menuContainer.append(svgCont);
 }
 
 function handleChoice(input: HTMLElement | null | undefined) {

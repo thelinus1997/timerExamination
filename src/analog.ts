@@ -1,6 +1,7 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
+import { createMenu } from "./menu";
 let timer = new Timer();
 let typeOfTimer = "";
 
@@ -19,7 +20,7 @@ export function analogStart(minutes: number, extraChoice: number) {
   svgCont.setAttribute("height", "32");
   const headerText: HTMLElement = document.createElement("p");
   headerText.innerText = "interval";
-
+  svgCont.addEventListener("click", createMenu);
   logoCont.append(svgCont, headerText);
   const clockContainer: HTMLDivElement = document.createElement("div");
   clockContainer.classList.add("analogClockContainer");

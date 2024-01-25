@@ -102,8 +102,7 @@ export function startCountdown(minutes: number, extraChoice: number) {
 
       console.log(minutes);
       console.log(currentTime.minutes);
-      //   if (currentTime.minutes + 1 == minutes - 5) {
-      if (currentTime.seconds == 50) {
+      if (currentTime.minutes + 1 == minutes - 5) {
         console.log("-5 bro");
         breakView(timer, "digital", extraChoice);
       }

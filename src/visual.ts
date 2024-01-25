@@ -1,6 +1,7 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
+import { createMenu } from "./menu";
 
 // Initialize EasyTimer
 let timer = new Timer();
@@ -76,7 +77,7 @@ if (sandBottomHeight === 100) {
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
   svgCont.style.fill = "white";
-
+  svgCont.addEventListener("click", createMenu);
   logoCont.append(svgCont, headerText);
   frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
 
