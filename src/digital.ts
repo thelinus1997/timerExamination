@@ -117,11 +117,7 @@ export function startCountdown(minutes: number, extraChoice: number) {
       // Optionally perform any actions when the timer completes
     });
   }
-  function handleAnimationEnd() {
-    alert("Timer Finished!");
-  }
 }
-
 function abortTimer() {
   // Stop the timer and reload the window
   timer.stop();
