@@ -11,8 +11,8 @@ import "./scss/style.scss";
 import { startLoading } from "./loadingScreen";
 import "./analog";
 import "./scss/_analog.scss";
-import "./scss/_visualTimer.scss"
-import "./scss/_menu.scss"
+import "./scss/_visualTimer.scss";
+import "./scss/_menu.scss";
 
 import { setTimer } from "./setTimer";
 import { startCountdown } from "./digital";
@@ -23,6 +23,9 @@ import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
 import { breakView } from "./breakview";
 
+// Mains syfte är att importera all styling samt starta själva appen genom startLoading funktionen
+//
+//
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);

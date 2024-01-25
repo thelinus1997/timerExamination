@@ -1,26 +1,28 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
+import { createMenu } from "./menu";
+//skapar easyTimer + tom sträng som används för att hålla koll på vilken timer du för nuvarande använder (används för att komma tillbaka hit efter breaktimer)
 let timer = new Timer();
 let typeOfTimer = "";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
+//tar emot minuter timern skall gå samt extra val (interval/break)
 export function analogStart(minutes: number, extraChoice: number) {
   app.innerHTML = "";
   typeOfTimer = "analog";
   const mainContainer: HTMLDivElement = document.createElement("div");
   mainContainer.classList.add("analogContainer");
   const logoCont: HTMLDivElement = document.createElement("div");
-  logoCont.classList.add("navLogo");
+  logoCont.classList.add("headerNavLogo");
   const svgCont: HTMLImageElement = document.createElement("img");
   svgCont.setAttribute("type", "img/svg+xml");
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
   const headerText: HTMLElement = document.createElement("p");
-  headerText.classList.add("headerText");
   headerText.innerText = "interval";
-
+  svgCont.addEventListener("click", createMenu);
   logoCont.append(svgCont, headerText);
   const clockContainer: HTMLDivElement = document.createElement("div");
   clockContainer.classList.add("analogClockContainer");
@@ -34,30 +36,32 @@ export function analogStart(minutes: number, extraChoice: number) {
   const minuteHand: HTMLImageElement = document.createElement("img");
   minuteHand.src = "../public/minuteHand.svg";
   minuteHand.setAttribute("id", "minuteHand");
-  const centerCover: HTMLDivElement = document.createElement("div");
-  centerCover.setAttribute("id", "centerClockFaceCover");
+
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
-  clockContainer.append(clockFaceSvg, secondHand, minuteHand, centerCover);
+  clockContainer.append(clockFaceSvg, secondHand, minuteHand);
   mainContainer.append(logoCont, clockContainer, button);
   app.append(mainContainer);
-  // Calculate the rotation angles based on the input minutes
+
+  //säger åt secondHand att den skall rotera 360 grader * mängd minuter (5 min ska det gå 360deg * 5)
   const secondHandRotation = 360 * minutes;
+  //säger åt minuteHand att göra detsamma fast delat på 60 då det finns 60min på en timme.
   const minuteHandRotation = (360 / 60) * minutes;
 
-  // Set up the rotation animation for the second hand
-  secondHand.style.animation = `rotateClockwise ${minutes * 60
-    }s linear infinite`;
+  //Säger åt hur visarna skall röra sig.
+  secondHand.style.animation = `rotateClockwise ${
+    minutes * 60
+  }s linear infinite`;
 
-  // Set up the rotation animation for the minute hand
-  minuteHand.style.animation = `rotateMinuteHand ${minutes * 60
-    }s linear infinite`;
+  minuteHand.style.animation = `rotateMinuteHand ${
+    minutes * 60
+  }s linear infinite`;
 
-  // Set up the keyframes for the rotation animations
+  //Skapar ny styleSheet för just denna animation
   const styleSheet = document.styleSheets[0];
-
+  //Skapar regler som avgör när visarna skall sluta röra på sig, använder sig utav vår tidigare kod.
   styleSheet.insertRule(
     `@keyframes rotateClockwise {
         to {
@@ -75,28 +79,26 @@ export function analogStart(minutes: number, extraChoice: number) {
       }`,
     styleSheet.cssRules.length
   );
-
+  //Kodblocket nedan hanterar extravalen, väljer du 0 (inget icheckat i setTimer) kommer den enbart köras en gång sedan avslutas timern i att skicka dig till alarmView()
+  //väljer du 1 blir funktionen rekursiv och oändlig
+  //väljer du 2 får du 5minuters pauser var 5e minut, timern fortsätter sedan där den pausades. Detta görs i alla olika klockvyer.
   if (extraChoice == 0) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 }, //när sekunder är 0 körs "targetAchieved"
     });
-    // Add an event listener for the 'secondsUpdated' event to update the UI
+    // Kod som körs varje sekund (används bland annat för att visa tid som är kvar på digital + breakview)
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
-      // You can update the UI here with the current time, e.g., display on a label
       const currentTime = timer.getTimeValues();
-
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
-
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    //kod som körs när taget är nått, i våran kod är det när seconds = 0.
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
     });
   }
 
@@ -104,28 +106,26 @@ export function analogStart(minutes: number, extraChoice: number) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 },
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
-      // You can update the UI here with the current time, e.g., display on a label
+
       const currentTime = timer.getTimeValues();
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
 
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       analogStart(minutes, extraChoice);
-      // Optionally perform any actions when the timer completes
     });
   }
   if (extraChoice == 2) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 },
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log("in break version");
@@ -136,22 +136,16 @@ export function analogStart(minutes: number, extraChoice: number) {
         console.log("-5 bro");
         breakView(timer, "analog", extraChoice);
       }
-      // You can update the UI here with the current time, e.g., display on a label
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
     });
   }
-  function handleAnimationEnd() {
-    alert("Timer Finished!");
-  }
 }
-
+//klickar du på abort startas sidan om helt enkelt
 function abortTimer() {
   window.location.reload();
 }
