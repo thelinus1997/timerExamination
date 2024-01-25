@@ -57,10 +57,23 @@
   line-height: normal;
   letter-spacing: 1.6px;
 }
-
-@mixin vhvw(){
+@mixin navLogoFinish {
+  width: 50px;
+  height: 50px;
+  top: 0.6rem;
+  left: 0.6rem;
+  margin-bottom: 5rem;
+  position: absolute;
+}
+@mixin vhvw() {
   width: 100vw;
   height: 100vh;
+}
+@mixin headerNavLogo {
+  top: 0.6rem;
+  left: 0.6rem;
+  margin-bottom: 5rem;
+  position: absolute;
 }
 
 @mixin navLogoMixin {
@@ -75,19 +88,20 @@
 }
 
 //hourglass
-@mixin pseudo ($position: absolute, $display: block, $content: ''){
-	position: $position;
-	display: $display;
-	content: '';}
-
-@mixin size($height, $width){
-	height: $height;
-	width: $width;
+@mixin pseudo($position: absolute, $display: block, $content: "") {
+  position: $position;
+  display: $display;
+  content: "";
 }
 
-@mixin cross($property, $val){
-	-webkit-#{$property}: $val;
-	-moz-#{$property}: $val;
-	-ms-#{$property}: $val;
-	#{$property}: $val;
+@mixin size($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin cross($property, $val) {
+  -webkit-#{$property}: $val;
+  -moz-#{$property}: $val;
+  -ms-#{$property}: $val;
+  #{$property}: $val;
 }

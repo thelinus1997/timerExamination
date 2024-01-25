@@ -11,14 +11,13 @@ export function analogStart(minutes: number, extraChoice: number) {
   const mainContainer: HTMLDivElement = document.createElement("div");
   mainContainer.classList.add("analogContainer");
   const logoCont: HTMLDivElement = document.createElement("div");
-  logoCont.classList.add("navLogo");
+  logoCont.classList.add("headerNavLogo");
   const svgCont: HTMLImageElement = document.createElement("img");
   svgCont.setAttribute("type", "img/svg+xml");
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
   const headerText: HTMLElement = document.createElement("p");
-  headerText.classList.add("headerText");
   headerText.innerText = "interval";
 
   logoCont.append(svgCont, headerText);
@@ -34,13 +33,12 @@ export function analogStart(minutes: number, extraChoice: number) {
   const minuteHand: HTMLImageElement = document.createElement("img");
   minuteHand.src = "../public/minuteHand.svg";
   minuteHand.setAttribute("id", "minuteHand");
-  const centerCover: HTMLDivElement = document.createElement("div");
-  centerCover.setAttribute("id", "centerClockFaceCover");
+
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
   button.innerText = "ABORT TIMER";
-  clockContainer.append(clockFaceSvg, secondHand, minuteHand, centerCover);
+  clockContainer.append(clockFaceSvg, secondHand, minuteHand);
   mainContainer.append(logoCont, clockContainer, button);
   app.append(mainContainer);
   // Calculate the rotation angles based on the input minutes
@@ -48,12 +46,14 @@ export function analogStart(minutes: number, extraChoice: number) {
   const minuteHandRotation = (360 / 60) * minutes;
 
   // Set up the rotation animation for the second hand
-  secondHand.style.animation = `rotateClockwise ${minutes * 60
-    }s linear infinite`;
+  secondHand.style.animation = `rotateClockwise ${
+    minutes * 60
+  }s linear infinite`;
 
   // Set up the rotation animation for the minute hand
-  minuteHand.style.animation = `rotateMinuteHand ${minutes * 60
-    }s linear infinite`;
+  minuteHand.style.animation = `rotateMinuteHand ${
+    minutes * 60
+  }s linear infinite`;
 
   // Set up the keyframes for the rotation animations
   const styleSheet = document.styleSheets[0];

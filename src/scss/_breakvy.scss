@@ -35,6 +35,18 @@
   width: 315px;
   height: 47px;
 }
+.floatingBreakTimeText {
+  position: absolute;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.4px;
+  color: $whiteFont;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%);
+}
 #ellipseOne,
 #ellipseTwo,
 #ellipseThree,

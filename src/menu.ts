@@ -6,10 +6,10 @@ export function createMenu() {
   logoCont.classList.add("navigationLogo");
   const svgCont: HTMLImageElement = document.createElement("img");
   svgCont.setAttribute("type", "img/svg+xml");
-  svgCont.setAttribute("src", "../public/flippedLogo.svg");
+  svgCont.setAttribute("src", "../public/flippedLogoWhite.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
-
+  logoCont.appendChild(svgCont);
   //append logo container to #app
   document.getElementById("app")?.appendChild(logoCont);
 
@@ -37,23 +37,23 @@ export function createMenu() {
   appElement?.appendChild(menuContainer);
 }
 
-function handleChoice(input: HTMLElement| null | undefined) {
+function handleChoice(input: HTMLElement | null | undefined) {
   if (input?.textContent) {
-  console.log(input.textContent);
-  if (input.textContent.includes("ANALOG")) {
-    setTimer(0);
+    console.log(input.textContent);
+    if (input.textContent.includes("ANALOG")) {
+      setTimer(0);
+    }
+    if (input.textContent.includes("DIGITAL")) {
+      setTimer(1);
+    }
+    if (input.textContent.includes("VISUAL")) {
+      setTimer(2);
+    }
+    if (input.textContent.includes("TEXT")) {
+      setTimer(3);
+    }
+    if (input.textContent.includes("CIRKLES")) {
+      setTimer(4);
+    }
   }
-  if (input.textContent.includes("DIGITAL")) {
-    setTimer(1);
-  }
-  if (input.textContent.includes("VISUAL")) {
-    setTimer(2);
-  }
-  if (input.textContent.includes("TEXT")) {
-    setTimer(3);
-  }
-  if (input.textContent.includes("CIRKLES")) {
-    setTimer(4);
-  }
-}
 }

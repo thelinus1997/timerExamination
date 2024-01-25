@@ -14,7 +14,7 @@ då 5min är över resuma första timern och återställ sidan till föregående
 */
 
 export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
-  console.log(inputTimer);
+  inputTimer.pause();
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
   main.classList.add("alarmMainCont");
@@ -36,8 +36,13 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
 
   const ellipseFour: HTMLDivElement = document.createElement("div");
   ellipseFour.id = "ellipseFour";
+
+  const breakTimeLeft: HTMLElement = document.createElement("h1");
+  breakTimeLeft.classList.add("floatingBreakTimeText");
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => resumeTimer());
+  button.addEventListener("click", () =>
+    resumeTimer(typeOfTimer, inputTimer.getTimeValues(), extraChoice)
+  );
   button.classList.add("newTimerButton");
   button.innerText = "NO PAUSE, GO NOW!";
   ellipseOne.appendChild(ellipseTwo);
@@ -45,10 +50,10 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
   ellipseThree.appendChild(ellipseFour);
   ellipseFour.appendChild(alarmSvgContainer);
   main.append(ellipseOne, alertText, button);
-  app.appendChild(main);
+  app.append(main, breakTimeLeft);
   breakTimer.start({
     countdown: true,
-    startValues: { seconds: 5 },
+    startValues: { minutes: 5 },
     target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
   });
   breakTimer.addEventListener("secondsUpdated", () => {
@@ -56,39 +61,39 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
     // You can update the UI here with the current time, e.g., display on a label
     const currentTime = breakTimer.getTimeValues();
     console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
+    breakTimeLeft.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
   });
 
   // Add an event listener for the 'targetAchieved' event to handle timer completion
   breakTimer.addEventListener("targetAchieved", () => {
     // You can update the UI here with the current time, e.g., display on a label
     const currentTime = inputTimer.getTimeValues();
-
-    switch (typeOfTimer) {
-      case "analog":
-        analogStart(currentTime.minutes, extraChoice);
-        break;
-      case "digital":
-        startCountdown(currentTime.minutes, extraChoice);
-        break;
-      case "visual":
-        visualTimerFunc();
-        break;
-      case "text":
-        // Check for string at index 3
-        break;
-      case "cirkles":
-        // Check for string at index 4
-        break;
-      default:
-        // Handle the case when index is not within the expected range
-        break;
-
-      // Kod som går tillbaka till föregående
-    }
+    resumeTimer(typeOfTimer, inputTimer.getTimeValues(), extraChoice);
   });
 }
-function resumeTimer() {
-  alert("add code to make timer resume");
+function resumeTimer(typeOfTimer, timeLeft, extraChoice) {
+  switch (typeOfTimer) {
+    case "analog":
+      analogStart(timeLeft.minutes, extraChoice);
+      break;
+    case "digital":
+      startCountdown(timeLeft.minutes, extraChoice);
+      break;
+    case "visual":
+      visualTimerFunc(timeLeft.minutes, extraChoice);
+      break;
+    case "text":
+      // Check for string at index 3
+      break;
+    case "cirkles":
+      // Check for string at index 4
+      break;
+    default:
+      // Handle the case when index is not within the expected range
+      break;
+
+    // Kod som går tillbaka till föregående
+  }
 }
 
 // timer.start({

@@ -27,16 +27,7 @@
   position: relative;
   margin: 12.5rem auto auto auto;
 }
-#centerClockFaceCover {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: $background-black;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(50%, 50%);
-}
+
 #secondHand,
 #minuteHand {
   position: absolute;

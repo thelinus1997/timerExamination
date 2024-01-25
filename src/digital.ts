@@ -10,13 +10,14 @@ const app = document.querySelector<HTMLDivElement>("#app")!;
 
 export function startCountdown(minutes: number, extraChoice: number) {
   app.innerHTML = "";
+  console.log(extraChoice);
 
   secTimerDisplay.classList.add("timerBoxDisplay");
 
   const navLogoTimerCont: HTMLDivElement = document.createElement("div");
   navLogoTimerCont.classList.add("navLogoTimer");
   const logoCont: HTMLDivElement = document.createElement("div");
-  logoCont.classList.add("navLogo");
+  logoCont.classList.add("headerNavLogo");
   const timerCont: HTMLDivElement = document.createElement("div");
   timerCont.classList.add("timerCont");
   const button: HTMLButtonElement = document.createElement("button");
@@ -29,22 +30,15 @@ export function startCountdown(minutes: number, extraChoice: number) {
   svgCont.setAttribute("src", "../public/flippedLogo.svg");
   svgCont.setAttribute("width", "32");
   svgCont.setAttribute("height", "32");
-
-  // Added a clickfuntion on the logo to return to the menu sight
-  svgCont.addEventListener('click', createMenu);
-  document.getElementById("app")?.appendChild(logoCont);
-  logoCont.append(svgCont);
-
-  timerCont.append(logoCont, secTimerDisplay, button);
-
   const headerText: HTMLElement = document.createElement("p");
-  headerText.classList.add("headerText");
   headerText.innerText = "interval";
 
+  // Added a clickfuntion on the logo to return to the menu sight
+  svgCont.addEventListener("click", createMenu);
+  document.getElementById("app")?.appendChild(logoCont);
   logoCont.append(svgCont, headerText);
-  timerCont.append(logoCont);
-  timerCont.append(secTimerDisplay);
-  timerCont.append(button);
+
+  timerCont.append(logoCont, secTimerDisplay, button);
 
   app.append(timerCont);
 
@@ -108,7 +102,8 @@ export function startCountdown(minutes: number, extraChoice: number) {
 
       console.log(minutes);
       console.log(currentTime.minutes);
-      if (currentTime.minutes + 1 == minutes - 5) {
+      //   if (currentTime.minutes + 1 == minutes - 5) {
+      if (currentTime.seconds == 50) {
         console.log("-5 bro");
         breakView(timer, "digital", extraChoice);
       }
