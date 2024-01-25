@@ -1,6 +1,8 @@
 const app = document.querySelector<HTMLDivElement>("#app")!;
 import { startLoading } from "./loadingScreen";
 import { setTimer } from "./setTimer";
+
+//skapar html samt knapp för att starta om ny timer
 export function alarmView() {
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
@@ -24,7 +26,7 @@ export function alarmView() {
   const ellipseFour: HTMLDivElement = document.createElement("div");
   ellipseFour.id = "ellipseFour";
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => startLoading());
+  button.addEventListener("click", () => window.location.reload());
   button.classList.add("newTimerButton");
   button.innerText = "SET NEW TIMER";
   ellipseOne.appendChild(ellipseTwo);

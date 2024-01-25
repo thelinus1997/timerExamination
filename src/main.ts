@@ -23,7 +23,10 @@ import { analogStart } from "./analog";
 import { alarmView } from "./alarmvy";
 import { breakView } from "./breakview";
 
+// Mains syfte är att importera all styling samt starta själva appen genom startLoading funktionen
+//
+//
+
 const app = document.querySelector<HTMLDivElement>("#app")!;
 console.log(app);
 startLoading();
-//breakView();

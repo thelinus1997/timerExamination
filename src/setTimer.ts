@@ -6,7 +6,10 @@ import { event } from "jquery";
 import { createMenu } from "./menu";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
+
+//var med basvärde för timern, startar på 10min.
 let minutes = 10;
+//Array för att hålla koll på vad för klockvy som är vald
 const alarmTypes: Array<String> = [
   "analog",
   "digital",
@@ -14,8 +17,9 @@ const alarmTypes: Array<String> = [
   "text",
   "circles",
 ];
+//var som används för att kontrollera extra val (interval/break)
 let choice = 0;
-
+//setTimer tar emot nummer som med hjälp utav vår array "alarmTypes" visar vad för vy du valt.
 export function setTimer(alarmChoice: number) {
   app.innerHTML = "";
   let chosenType: String = "";
@@ -61,7 +65,7 @@ function updatePositive() {
   ) as HTMLElement;
   minutesText.innerText = minutes.toString();
 }
-
+//Tar emot den valda vyn som input, skapar sedan all HTML för att välja tid samt extraval (interval/break)
 function buildPage(input: String) {
   console.log("hej");
   const main: HTMLDivElement = document.createElement("div");
@@ -77,7 +81,7 @@ function buildPage(input: String) {
 
   logoCont.appendChild(svgCont);
 
-  // Added a clickfuntion on the logo to return to the menu sight
+  // eventlistener för att gå till menyn
   svgCont.addEventListener("click", createMenu);
   document.getElementById("app")?.appendChild(logoCont);
   logoCont.append(svgCont);
@@ -107,16 +111,12 @@ function buildPage(input: String) {
   checkBoxOne.type = "checkbox";
   const checkBoxTwo: HTMLInputElement = document.createElement("input");
   checkBoxTwo.type = "checkbox";
-  //eventlisterner sparar 0-2 beroende på vad som är iklickat (göra genom if sats)
   const textOne: HTMLElement = document.createElement("p");
   textOne.innerText = "intervals";
   const textTwo: HTMLElement = document.createElement("p");
   textTwo.innerText = "5 min break / interval";
 
-  // const checkBoxOne: HTMLInputElement = document.createElement('input');
-  // checkBoxOne.type = "checkbox";
-
-  //function to check if box1 is selected
+  //eventlisteners för båda checkboxes som ser till att du enbart har en vald samt håller koll på vad du valt genom variabeln "choice"
   checkBoxOne.addEventListener("change", () => {
     if (checkBoxOne.checked) {
       if (checkBoxTwo.checked) {
@@ -143,14 +143,6 @@ function buildPage(input: String) {
     }
   });
 
-  // checkBoxTwo.addEventListener('Change'), (event: Event) => {
-  //   if ((event.target as HTMLInputElement).checked) {
-  //     console.log('Checkboxtwo is selected');
-  //   } else {
-  //     console.log('Checkboxtwo is not selected');
-  //   }
-  // }
-
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => getTimerValue(minutes, input));
   button.classList.add("whiteButton");
@@ -163,10 +155,13 @@ function buildPage(input: String) {
   main.append(logoCont, timeContainer, choiceContainer, button);
   app.appendChild(main);
 }
+
+//skicka med input minuter + string som avgör ditt vy-val
 function getTimerValue(input: number, alarmType: String) {
+  //Choice är deklarerat högst i koden så den är tillgänglig här.
+  //Choice kan vara 0, 1 eller 2. 0 är vanlig timer, 1 är interval (startar om så fort timern är slut), 2 är break (ex: timer satt 20 min, varje 5 min får du 5min paus, timern fortsätter sen där den var, 20, 15, 10, 5, slut.)
   console.log(input, alarmType);
   if (alarmType.includes("analog")) {
-    //skicka med input minuter + valet du gjorde. (0 = inget val, 1 = interval, 2 = 5min break)
     analogStart(input, choice);
   }
   if (alarmType.includes("digital")) {
