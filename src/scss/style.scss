@@ -42,9 +42,18 @@ h1 {
 }
 
 #app {
+  position: relative;
   background-color: $background-black;
   overflow: hidden;
   @include basicFlexBox;
+}
+.headerNavLogo {
+  @include headerNavLogo;
+  color: black;
+  display: flex;
+  width: 430px;
+  gap: 30%;
+  font-size: 20px;
 }
 .setTimer {
   background-color: $background-white;

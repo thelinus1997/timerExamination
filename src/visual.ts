@@ -1,6 +1,7 @@
 import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
+import { createMenu } from "./menu";
 
 // Initialize EasyTimer
 let timer = new Timer();
@@ -9,49 +10,43 @@ let contentAppended = false;
 const myVarVal = "60s";
 document.documentElement.style.setProperty("oneMinute", myVarVal);
 
-
 export function visualTimerFunc(minutes: number, extraChoice: number) {
- 
-    app.innerHTML = "";
-    
+  app.innerHTML = "";
 
-    const visualTimerCont = document.createElement("div");
-    visualTimerCont.classList.add("visualTimerCont");
+  const visualTimerCont = document.createElement("div");
+  visualTimerCont.classList.add("visualTimerCont");
 
-    const logoCont: HTMLDivElement = document.createElement("div");
-    logoCont.classList.add("navLogo");
+  const logoCont: HTMLDivElement = document.createElement("div");
+  logoCont.classList.add("headerNavLogo");
 
-    const headerText: HTMLElement = document.createElement("p");
-    headerText.classList.add("headerText");
-    headerText.innerText = "interval";
+  const headerText: HTMLElement = document.createElement("p");
+  headerText.innerText = "interval";
 
-    const textArea:HTMLElement = document.createElement("h1");
-    textArea.classList.add("timeTextDisplay")
-    
+  const textArea: HTMLElement = document.createElement("h1");
+  textArea.classList.add("timeTextDisplay");
 
-    const visualTimer = document.createElement("div");
-    visualTimer.classList.add("visualTimer");
+  const visualTimer = document.createElement("div");
+  visualTimer.classList.add("visualTimer");
 
-    const glassUpper = document.createElement("div");
-    glassUpper.classList.add("glassUpper");
+  const glassUpper = document.createElement("div");
+  glassUpper.classList.add("glassUpper");
 
-    const sandUpper = document.createElement("div");
-    sandUpper.classList.add("sandUpper");
+  const sandUpper = document.createElement("div");
+  sandUpper.classList.add("sandUpper");
 
-    const fillet = document.createElement("div");
-    fillet.classList.add("fillet");
+  const fillet = document.createElement("div");
+  fillet.classList.add("fillet");
 
-    const glassBottom = document.createElement("div");
-    glassBottom.classList.add("glassBottom");
+  const glassBottom = document.createElement("div");
+  glassBottom.classList.add("glassBottom");
 
-    const sandBottom = document.createElement("div");
-    sandBottom.classList.add("sandBottom");
+  const sandBottom = document.createElement("div");
+  sandBottom.classList.add("sandBottom");
 
-    const frame = document.createElement("div");
-    frame.classList.add("frame");
+  const frame = document.createElement("div");
+  frame.classList.add("frame");
 
-
-/*    const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
+  /*    const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
 const sandBottomRotate = document.querySelector(".sandBottom") as HTMLElement;
 
 function hourglassFilled() {
@@ -70,29 +65,26 @@ if (sandBottomHeight ===  100) {
 } else if (sandUpperHeight === 0) {
   hourglassFilled(); // Apply rotation
 } */
-    
-    
-    const button: HTMLButtonElement = document.createElement("button");
-    button.addEventListener("click", () => abortTimer());
-    button.classList.add("greyButton");
-    button.innerText = "ABORT TIMER";
 
-    const svgCont: HTMLImageElement = document.createElement("img");
-    svgCont.setAttribute("type", "img/svg+xml");
-    svgCont.setAttribute("src", "./public/flippedLogo.svg");
-    svgCont.setAttribute("width", "32");
-    svgCont.setAttribute("height", "32");
-    svgCont.style.fill= "white";
+  const button: HTMLButtonElement = document.createElement("button");
+  button.addEventListener("click", () => abortTimer());
+  button.classList.add("greyButton");
+  button.innerText = "ABORT TIMER";
 
-    logoCont.appendChild(svgCont);
-    frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
-    
-    visualTimerCont.append(svgCont, headerText, frame, button, textArea);
+  const svgCont: HTMLImageElement = document.createElement("img");
+  svgCont.setAttribute("type", "img/svg+xml");
+  svgCont.setAttribute("src", "./public/flippedLogo.svg");
+  svgCont.setAttribute("width", "32");
+  svgCont.setAttribute("height", "32");
+  svgCont.style.fill = "white";
+  svgCont.addEventListener("click", createMenu);
+  logoCont.append(svgCont, headerText);
+  frame.append(glassUpper, sandUpper, glassBottom, sandBottom, fillet);
 
+  visualTimerCont.append(logoCont, frame, button, textArea);
 
-    app.append(visualTimerCont);
+  app.append(visualTimerCont);
 
-    
   if (extraChoice == 0) {
     timer.start({
       countdown: true,
@@ -166,26 +158,10 @@ if (sandBottomHeight ===  100) {
     // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      
     });
-    function hourglassFilled() {
-      const sandUpperElement = document.querySelector(".sandUpper");
-      const sandBottomElement = document.querySelector(".sandBottom");
-    
-      if (sandUpperElement && sandBottomElement) {
-        sandUpperElement.classList.add("filled");
-        sandBottomElement.classList.add("filled");
-      }
-    
-      console.log("Rotation applied");
-    }
-    hourglassFilled();
   }
-  
 }
 
-    function abortTimer() {
-      window.location.reload();
-    }
-
-  
+function abortTimer() {
+  window.location.reload();
+}

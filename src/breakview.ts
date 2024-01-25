@@ -8,13 +8,13 @@ const app = document.querySelector<HTMLDivElement>("#app")!;
 let breakTimer = new Timer();
 
 /*
-Skicka med timern som pausas från till exempel analog. till exempel pausas timer vid 4:50
-skapa ny timer med 5min countdown.
-då 5min är över resuma första timern och återställ sidan till föregående vy.
+skapar HTML och timer för break. Visar tiden som är kvar på breaken.
+Tar emot timern som användes innan och pausar den.
+Tar emot vilken vy som användes i en sträng samt extravalet.
 */
 
 export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
-  console.log(inputTimer);
+  inputTimer.pause();
   app.innerHTML = "";
   const main: HTMLDivElement = document.createElement("div");
   main.classList.add("alarmMainCont");
@@ -36,8 +36,13 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
 
   const ellipseFour: HTMLDivElement = document.createElement("div");
   ellipseFour.id = "ellipseFour";
+
+  const breakTimeLeft: HTMLElement = document.createElement("h1");
+  breakTimeLeft.classList.add("floatingBreakTimeText");
   const button: HTMLButtonElement = document.createElement("button");
-  button.addEventListener("click", () => resumeTimer());
+  button.addEventListener("click", () =>
+    resumeTimer(typeOfTimer, inputTimer.getTimeValues(), extraChoice)
+  );
   button.classList.add("newTimerButton");
   button.innerText = "NO PAUSE, GO NOW!";
   ellipseOne.appendChild(ellipseTwo);
@@ -45,75 +50,52 @@ export function breakView(inputTimer: Timer, typeOfTimer: String, extraChoice) {
   ellipseThree.appendChild(ellipseFour);
   ellipseFour.appendChild(alarmSvgContainer);
   main.append(ellipseOne, alertText, button);
-  app.appendChild(main);
+  app.append(main, breakTimeLeft);
+
+  //timer för paus startas
   breakTimer.start({
     countdown: true,
-    startValues: { seconds: 5 },
-    target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+    startValues: { minutes: 5 },
+    target: { seconds: 0 },
   });
   breakTimer.addEventListener("secondsUpdated", () => {
     console.log(breakTimer);
-    // You can update the UI here with the current time, e.g., display on a label
+    //Visar hur långt kvar der är av pausen
     const currentTime = breakTimer.getTimeValues();
     console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
+    breakTimeLeft.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
   });
 
   // Add an event listener for the 'targetAchieved' event to handle timer completion
   breakTimer.addEventListener("targetAchieved", () => {
     // You can update the UI here with the current time, e.g., display on a label
     const currentTime = inputTimer.getTimeValues();
-
-    switch (typeOfTimer) {
-      case "analog":
-        analogStart(currentTime.minutes, extraChoice);
-        break;
-      case "digital":
-        startCountdown(currentTime.minutes, extraChoice);
-        break;
-      case "visual":
-        visualTimerFunc();
-        break;
-      case "text":
-        // Check for string at index 3
-        break;
-      case "cirkles":
-        // Check for string at index 4
-        break;
-      default:
-        // Handle the case when index is not within the expected range
-        break;
-
-      // Kod som går tillbaka till föregående
-    }
+    resumeTimer(typeOfTimer, inputTimer.getTimeValues(), extraChoice);
   });
 }
-function resumeTimer() {
-  alert("add code to make timer resume");
+//När pausen är över skickas all input tillbaka till föregående funktion, ex: Du startar analog på 20min med break valt, efter 5min får du en paus på 5minuter.
+//efter 5 minuter återgår du till den analoga vyn med 15min kvar på timern. detta kommer hända igen sedan vid 10min och 5min.
+function resumeTimer(typeOfTimer, timeLeft, extraChoice) {
+  switch (typeOfTimer) {
+    case "analog":
+      analogStart(timeLeft.minutes, extraChoice);
+      break;
+    case "digital":
+      startCountdown(timeLeft.minutes, extraChoice);
+      break;
+    case "visual":
+      visualTimerFunc(timeLeft.minutes, extraChoice);
+      break;
+    case "text":
+      // Check for string at index 3
+      break;
+    case "cirkles":
+      // Check for string at index 4
+      break;
+    default:
+      // Handle the case when index is not within the expected range
+      break;
+
+    // Kod som går tillbaka till föregående
+  }
 }
-
-// timer.start({
-//   countdown: true,
-//   startValues: { minutes: 0 },
-//   target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
-// });
-// function handleAnimationEnd() {
-//   alert("Timer Finished!");
-// }
-
-// // Add an event listener for the 'secondsUpdated' event to update the UI
-// timer.addEventListener("secondsUpdated", () => {
-//   // You can update the UI here with the current time, e.g., display on a label
-//   const currentTime = timer.getTimeValues();
-//   console.log(`Current time: ${currentTime.minutes}:${currentTime.seconds}`);
-// });
-
-// // Add an event listener for the 'targetAchieved' event to handle timer completion
-// timer.addEventListener("targetAchieved", () => {
-//   alert("Timer Finished!");
-//   abortTimer();
-//   // Optionally perform any actions when the timer completes
-// });
-
-// function abortTimer() {
-//   window.location.reload();
-// }
