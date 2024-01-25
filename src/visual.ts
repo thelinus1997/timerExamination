@@ -65,7 +65,7 @@ function hourglassFilled() {
 const sandBottomHeight = sandBottomRotate.offsetHeight;
 const sandUpperHeight = sandUpperRotate.offsetHeight;
 
-if (sandBottomHeight === 100) {
+if (sandBottomHeight ===  100) {
   hourglassFilled(); // Apply rotation
 } else if (sandUpperHeight === 0) {
   hourglassFilled(); // Apply rotation
@@ -168,7 +168,18 @@ if (sandBottomHeight === 100) {
       alarmView();
       
     });
+    function hourglassFilled() {
+      const sandUpperElement = document.querySelector(".sandUpper");
+      const sandBottomElement = document.querySelector(".sandBottom");
     
+      if (sandUpperElement && sandBottomElement) {
+        sandUpperElement.classList.add("filled");
+        sandBottomElement.classList.add("filled");
+      }
+    
+      console.log("Rotation applied");
+    }
+    hourglassFilled();
   }
   
 }

@@ -263,3 +263,8 @@ html {
     transform: rotate(360deg);
   }
 }
+
+.sandUpper.filled,
+.sandBottom.filled {
+  animation: rotateHourglass 10s linear infinite 60s; /* Add 60s delay */
+}
