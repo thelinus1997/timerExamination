@@ -99,7 +99,7 @@ html {
   @extend %sand;
   @include cross(animation, sandDown 60s linear infinite 0s);
   position: absolute;
-  top: -2.5%;
+  top: -0.1%;
   transform: rotate(315deg);
   left: 10%;
   @extend %sand;
@@ -116,7 +116,7 @@ html {
   position: absolute;
   transform: rotate(135deg);
   left: 10%;
-  top: 60%;
+  top: 58%;
   @extend %sand;
   @include cross(animation, sandUp 60s linear infinite 0s);
 

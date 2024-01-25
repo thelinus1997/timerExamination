@@ -37,7 +37,7 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
   fillet.classList.add("fillet");
 
   const glassBottom = document.createElement("div");
-  glassBottom.classList.add("glassbottom");
+  glassBottom.classList.add("glassBottom");
 
   const sandBottom = document.createElement("div");
   sandBottom.classList.add("sandBottom");
@@ -45,15 +45,25 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
   const frame = document.createElement("div");
   frame.classList.add("frame");
 
-  const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
-  const sandBottomRotate = document.querySelector(".sandBottom") as HTMLElement;
-  function hourglassFilled() {
-    // Add the "filled" class to trigger the rotation animation
-    sandUpper.classList.add("filled");
-    sandBottom.classList.add("filled");
+  /*    const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
+const sandBottomRotate = document.querySelector(".sandBottom") as HTMLElement;
 
-    console.log(hourglassFilled);
-  }
+function hourglassFilled() {
+  // Add the "filled" class to trigger the rotation animation
+  sandUpperRotate.classList.add("filled");
+  sandBottomRotate.classList.add("filled");
+
+  console.log("Rotation applied");
+}
+
+const sandBottomHeight = sandBottomRotate.offsetHeight;
+const sandUpperHeight = sandUpperRotate.offsetHeight;
+
+if (sandBottomHeight === 100) {
+  hourglassFilled(); // Apply rotation
+} else if (sandUpperHeight === 0) {
+  hourglassFilled(); // Apply rotation
+} */
 
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
