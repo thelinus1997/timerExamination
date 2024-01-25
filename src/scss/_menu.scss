@@ -7,11 +7,13 @@
   left: 0.6rem;
   margin-bottom: 5rem;
   position: absolute;
+  background-color: white;
 }
 .menu-Container {
   text-align: center;
   list-style-type: none;
   padding: 5rem;
+  cursor: pointer;
 
   li {
     padding: 1rem;
