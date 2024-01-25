@@ -45,7 +45,7 @@ export function setTimer(alarmChoice: number) {
 console.log(app);
 function updateNegative() {
   if (minutes == 1) {
-    minutes = 99;
+    minutes = 40;
   } else {
     minutes -= 1;
   }
@@ -55,7 +55,7 @@ function updateNegative() {
   minutesText.innerText = minutes.toString();
 }
 function updatePositive() {
-  if (minutes == 99) {
+  if (minutes == 40) {
     minutes = 1;
   } else {
     minutes += 1;
