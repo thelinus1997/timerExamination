@@ -237,7 +237,7 @@ html {
 
 .fillet {
   position: absolute;
-  transform: rotate(90deg) translate(-50%, -50%); /
+  transform: rotate(90deg) translate(-50%, -50%); 
   @include size(20%, 4px);
   background: $sand;
   @include cross(animation, fillet 1s linear infinite 0s);
