@@ -2,7 +2,7 @@ import Timer from "easytimer.js";
 import { breakView } from "./breakview";
 import { alarmView } from "./alarmvy";
 import { createMenu } from "./menu";
-// Initialize EasyTimer
+
 let timer = new Timer();
 
 const secTimerDisplay: HTMLDivElement = document.createElement("div");
@@ -33,7 +33,6 @@ export function startCountdown(minutes: number, extraChoice: number) {
   const headerText: HTMLElement = document.createElement("p");
   headerText.innerText = "interval";
 
-  // Added a clickfuntion on the logo to return to the menu sight
   svgCont.addEventListener("click", createMenu);
   document.getElementById("app")?.appendChild(logoCont);
   logoCont.append(svgCont, headerText);
@@ -46,23 +45,19 @@ export function startCountdown(minutes: number, extraChoice: number) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 }, 
     });
-    // Add an event listener for the 'secondsUpdated' event to update the UI
+    
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
-      // You can update the UI here with the current time, e.g., display on a label
       const currentTime = timer.getTimeValues();
       secTimerDisplay.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
-
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
     });
   }
 
@@ -70,11 +65,11 @@ export function startCountdown(minutes: number, extraChoice: number) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 },
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
-      // You can update the UI here with the current time, e.g., display on a label
+     
       const currentTime = timer.getTimeValues();
       secTimerDisplay.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
 
@@ -83,17 +78,17 @@ export function startCountdown(minutes: number, extraChoice: number) {
       );
     });
 
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+
     timer.addEventListener("targetAchieved", () => {
       startCountdown(minutes, extraChoice);
-      // Optionally perform any actions when the timer completes
+      
     });
   }
   if (extraChoice == 2) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 },
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log("in break version");
@@ -106,20 +101,15 @@ export function startCountdown(minutes: number, extraChoice: number) {
         console.log("-5 bro");
         breakView(timer, "digital", extraChoice);
       }
-      // You can update the UI here with the current time, e.g., display on a label
+     
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
+      
     });
   }
-}
-function abortTimer() {
-  // Stop the timer and reload the window
-  timer.stop();
-  window.location.reload();
 }

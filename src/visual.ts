@@ -46,26 +46,6 @@ export function visualTimerFunc(minutes: number, extraChoice: number) {
   const frame = document.createElement("div");
   frame.classList.add("frame");
 
-  /*    const sandUpperRotate = document.querySelector(".sandUpper") as HTMLElement;
-const sandBottomRotate = document.querySelector(".sandBottom") as HTMLElement;
-
-function hourglassFilled() {
-  // Add the "filled" class to trigger the rotation animation
-  sandUpperRotate.classList.add("filled");
-  sandBottomRotate.classList.add("filled");
-
-  console.log("Rotation applied");
-}
-
-const sandBottomHeight = sandBottomRotate.offsetHeight;
-const sandUpperHeight = sandUpperRotate.offsetHeight;
-
-if (sandBottomHeight === 100) {
-  hourglassFilled(); // Apply rotation
-} else if (sandUpperHeight === 0) {
-  hourglassFilled(); // Apply rotation
-} */
-
   const button: HTMLButtonElement = document.createElement("button");
   button.addEventListener("click", () => abortTimer());
   button.classList.add("greyButton");
@@ -89,9 +69,9 @@ if (sandBottomHeight === 100) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 }, 
     });
-    // Add an event listener for the 'secondsUpdated' event to update the UI
+  
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
       // You can update the UI here with the current time, e.g., display on a label
@@ -102,10 +82,10 @@ if (sandBottomHeight === 100) {
       );
     });
 
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    
     timer.addEventListener("targetAchieved", () => {
       alarmView();
-      // Optionally perform any actions when the timer completes
+    
     });
   }
 
@@ -113,11 +93,11 @@ if (sandBottomHeight === 100) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 }, 
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log(timer);
-      // You can update the UI here with the current time, e.g., display on a label
+      
       const currentTime = timer.getTimeValues();
       textArea.innerText = `${currentTime.minutes}:${currentTime.seconds}`;
 
@@ -126,17 +106,17 @@ if (sandBottomHeight === 100) {
       );
     });
 
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    
     timer.addEventListener("targetAchieved", () => {
       visualTimerFunc(minutes, extraChoice);
-      // Optionally perform any actions when the timer completes
+     
     });
   }
   if (extraChoice == 2) {
     timer.start({
       countdown: true,
       startValues: { minutes: minutes },
-      target: { seconds: 0 }, // When the countdown reaches 0 seconds, trigger the 'targetAchieved' event
+      target: { seconds: 0 }, 
     });
     timer.addEventListener("secondsUpdated", () => {
       console.log("in break version");
@@ -149,12 +129,12 @@ if (sandBottomHeight === 100) {
         console.log("-5 bro");
         breakView(timer, "visual", extraChoice);
       }
-      // You can update the UI here with the current time, e.g., display on a label
+      
       console.log(
         `Current time: ${currentTime.minutes}:${currentTime.seconds}`
       );
     });
-    // Add an event listener for the 'targetAchieved' event to handle timer completion
+    
     timer.addEventListener("targetAchieved", () => {
       alarmView();
     });
