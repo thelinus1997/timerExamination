@@ -78,7 +78,6 @@ html {
 
 %sand {
   position: absolute;
-  // @include size(30%, 30%);
   width: 100px;
   height: 100px;
   left: 50%;
@@ -105,9 +104,7 @@ html {
   @extend %sand;
   @include cross(animation, sandDown 60s linear infinite 0s);
 
-  &.filled {
-    animation: rotateHourglass 3s linear infinite;
-  }
+ 
 }
 
 .sandBottom {
@@ -119,10 +116,6 @@ html {
   top: 58%;
   @extend %sand;
   @include cross(animation, sandUp 60s linear infinite 0s);
-
-  &.filled {
-    animation: rotateHourglass 3s linear infinite;
-  }
 }
 
 .frame {
@@ -251,15 +244,4 @@ html {
   left: 50%;
   top: 50%;
   transform-origin: center;
-}
-
-//rotation
-
-@keyframes rotateHourglass {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
